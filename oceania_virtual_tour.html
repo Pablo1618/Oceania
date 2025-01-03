@@ -1,48 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oceania 🚢⚓ - spacer wirtualny po statku</title>
-    <link rel="icon" href="/ui_photos/logo.png" type="image/x-icon">
-    <script src="scripts/ui_controls.js" defer></script>
-    <link rel="stylesheet" href="css/oceania_virtual_tour.css">
-    <script src="https://cdn.jsdelivr.net/npm/three@0.125.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>OceaniaVirtualTour</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="vendor/reset.min.css">
+<link rel="stylesheet" href="style.css">
+
+<script src="ui_controls.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+  integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" /> 
 </head>
+<body class="multiple-scenes view-control-buttons">
 
-<body>
-    <div id="container"></div>
+<div id="pano"></div>
 
-    <div id="left-panel">
-        <div id="div_open_left_panel_button">
-            <div>PLAN STATKU</div>
-            <i class="fa-solid fa-arrow-right"></i>
-        </div>
-        <img src="ui_photos/miedzypoklad.png" />
+<div id="left-panel">
+  <div id="div_open_left_panel_button">
+    <div>PLAN STATKU</div>
+    <i class="fa-solid fa-arrow-right"></i>
+  </div>
+  <img id="shipImage" src="ui-img/miedzypoklad.png" />
+  <div id="left-panel-level-buttons-div">
+    <button onCLick="changeLevel(2)">GÓRNY POKŁAD</button>
+    <button onCLick="changeLevel(1)">DOLNY POKŁAD</button>
+    <button onCLick="changeLevel(0)">MASZYNOWNIA</button>
+  </div>
+</div>
+
+<div id="right-panel">
+  <div id="div_open_right_panel_button">
+    <div>MENU</div>
+    <i class="fa-solid fa-arrow-left"></i>
+  </div>
+
+  <div id="right-panel-content">
+    <img id="iopan-logo" src="https://www.iopan.pl/assets/images/app/logo-pl.svg" alt="Logo IO PAN">
+    <h1 class="outfit-title">STATEK BADAWCZY <br> <span
+        style="text-decoration:none; text-shadow: none; color:#29519b; font-size:1.4vw; letter-spacing: 0.35vw;">OCEANIA</span>
+    </h1>
+
+    <div id="locationsList">
+
+      <!-- POKŁAD -->
+      <ul class="expandable-list">
+        <li class="list-item">
+          <span class="list-title" onclick="toggleList('deck-main')"> <i class="fa-solid fa-angle-down"></i> Pokład</span>
+          <ul id="deck-main" class="hidden">
+
+            <li onclick="document.getElementById('mostek-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/mostek.jpg" class="image">
+                <div>Mostek</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('mostek-wejscie-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/mostek_wejscie.jpg" class="image">
+                <div>Mostek - wejście</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('dziob-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/dziob.jpg" class="image">
+                <div>Dziób</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('rufa-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/rufa.jpg" class="image">
+                <div>Rufa</div>
+              </div>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+
+      <!-- MIĘDZYPOKŁAD -->
+      <ul class="expandable-list">
+        <li class="list-item">
+          <span class="list-title" onclick="toggleList('deck-intermediate')"> <i class="fa-solid fa-angle-down"></i> Międzypokład</span>
+          <ul id="deck-intermediate" class="hidden">
+
+            <li onclick="document.getElementById('mesa-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/mesa.jpg" class="image">
+                <div>Mesa</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('lab-mokre-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/lab_mokre.jpg" class="image">
+                <div>Laboratorium mokre</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('salon-rufa-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/salon_rufa.jpg" class="image">
+                <div>Salon - Rufa</div>
+              </div>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+
+      <!-- MASZYNOWNIA -->
+      <ul class="expandable-list">
+        <li class="list-item">
+          <span class="list-title" onclick="toggleList('deck-engine')"> <i class="fa-solid fa-angle-down"></i> Maszynownia</span>
+          <ul id="deck-engine" class="hidden">
+            
+            <li onclick="document.getElementById('maszynownia-silnik-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/maszynownia_silnik.jpg" class="image">
+                <div>Silnik</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('maszynownia-przedni-sektor-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/maszynownia_przod.jpg" class="image">
+                <div>Przedni sektor</div>
+              </div>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+
     </div>
 
-    <div id="right-panel">
-        <div id="div_open_right_panel_button">
-            <div>MENU</div>
-            <i class="fa-solid fa-arrow-left"></i>
-        </div>
+  </div>
 
-        <div id="right-panel-content">
-            <img id="iopan-logo" src="https://www.iopan.pl/assets/images/app/logo-pl.svg" alt="Logo IO PAN">
-            <h1 class="outfit-title">STATEK BADAWCZY <br> <span style="text-decoration:none; text-shadow: none; color:#29519b; font-size:1.4vw; letter-spacing: 0.35vw;">OCEANIA</span></h1>
-            <div style="color:black">Główny pokład</div>
-            <div style="color:black">Międzypokład</div>
-            <div style="color:black">Maszynownia</div>
-            <div style="color:black">TODO</div>
-        </div>
+  <div id="controlButtons">
+    <i class="fa-solid fa-volume-high"></i>
+    <i class="fa-regular fa-circle-question"></i>
+  </div>
+  <div id="belowControlButtonsText">
+    Oceania - Spacer Wirtualny
+  </div> 
+  
 
-    </div>
+</div>
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-serwerownia" id="serwerownia-link">
+        <li class="text">Serwerownia</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="1-dzib" id="dziob-link">
+        <li class="text">Dziób</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-laboratorium-mokre" id="lab-mokre-link">
+        <li class="text">Laboratorium Mokre</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="3-maszynownia---przedni-sektor" id="maszynownia-przedni-sektor-link">
+        <li class="text">Maszynownia - Przedni Sektor</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="4-maszynownia---silnik" id="maszynownia-silnik-link">
+        <li class="text">Maszynownia - Silnik</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="5-mesa" id="mesa-link">
+        <li class="text">Mesa</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="6-mostek" id="mostek-link">
+        <li class="text">Mostek</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="7-mostek---wejcie" id="mostek-wejscie-link">
+        <li class="text">Mostek - Wejście</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="8-pokj-zaogi" id="pokoj-zalogi-link">
+        <li class="text">Pokój Załogi</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="9-rufa" id="rufa-link">
+        <li class="text">Rufa</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="10-salon---rufa" id="salon-rufa-link">
+        <li class="text">Salon - Rufa</li>
+      </a>
+    
+  </ul>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="img/play.png">
+  <img class="icon on" src="img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="img/fullscreen.png">
+  <img class="icon on" src="img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="img/expand.png">
+  <img class="icon on" src="img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+  <img class="icon" src="img/up.png">
+</a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+  <img class="icon" src="img/down.png">
+</a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+  <img class="icon" src="img/left.png">
+</a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+  <img class="icon" src="img/right.png">
+</a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+  <img class="icon" src="img/plus.png">
+</a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+  <img class="icon" src="img/minus.png">
+</a>
+
+<script src="vendor/screenfull.min.js" ></script>
+<script src="vendor/bowser.min.js" ></script>
+<script src="vendor/marzipano.js" ></script>
+
+<script src="data.js"></script>
+<script src="index.js"></script>
+
 </body>
-
 </html>
