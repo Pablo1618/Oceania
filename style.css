@@ -1049,6 +1049,8 @@ body.view-control-buttons .viewControlButton {
 
 /* stuff below is for stuff added in this project*/
 
+
+/* for the view controls at the bottom */
 .viewControlsHolder
 {
   display:flex;
@@ -1061,3 +1063,23 @@ body.view-control-buttons .viewControlButton {
   justify-content: center;
 
 }
+
+
+/* expandable lists on the right */
+
+.scenesList
+{
+  display:block;
+  overflow: hidden;
+  max-height: 0;
+  transition:1s;
+}
+
+.scenesList.listShown 
+{
+  max-height: 0px;
+}
+
+
+
+

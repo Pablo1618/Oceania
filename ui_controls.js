@@ -32,10 +32,16 @@ open_right_panel_button.addEventListener('click', () => {
 });
 function toggleList(id) {
     var list = document.getElementById(id);
-    if (list.style.display === "none" || list.style.display === "") {
-      list.style.display = "block";
-    } else {
-      list.style.display = "none";
+    list.classList.toggle("listShown");
+
+    if(list.classList.contains("listShown"))
+    {
+        list.style.maxHeight = list.scrollHeight + 'px';
     }
+    else
+    {
+        list.style.maxHeight = '0px';
+    }
+
   }
   
