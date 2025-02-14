@@ -8,6 +8,7 @@ open_left_panel_button.addEventListener('click', () => {
     icon.classList.toggle('fa-arrow-right');
     icon.classList.toggle('fa-arrow-left');
 });
+
 function changeLevel(height){
     if(height==2){
         document.getElementById('shipImage').src = 'ui-img/poklad.png';
