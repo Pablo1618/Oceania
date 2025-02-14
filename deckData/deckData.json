@@ -32,7 +32,17 @@
             },
             "link": "salon-rufa-link",
             "color": [255, 0, 0]
+        },
+        {
+          "name": "Mesa",
+          "position": {
+          "x": 1056,
+          "y": 621
+          },
+          "link": "mesa-link",
+          "color": [255, 0, 0]
         }
+
         
         
       ],
@@ -73,6 +83,16 @@
           "y": 542
           },
           "link": "dziob-link",
+          "color": [255, 0, 0]
+        },
+
+        {
+          "name": "Laboratorium Mokre",
+          "position": {
+          "x": 586,
+          "y": 598
+          },
+          "link": "laboratorium-mokre-link",
           "color": [255, 0, 0]
         }
 
