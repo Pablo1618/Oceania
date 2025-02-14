@@ -3,8 +3,8 @@
   opacity: 85%;
   position: absolute;
   top: 10vw;
-  left: -40vw;
-  width: 40vw;
+  left: -50vw;
+  width: 50vw;
   height: 13.3vw;
   background-color: #ffffff;
   color: white;
@@ -45,12 +45,17 @@
 #left-panel.open {
   left: 0;
 }
-#left-panel img{
+
+
+#shipImage{
   margin-bottom:1.2vw;
   width: 40vw;
   height: 10vw;
   object-fit:cover;
 }
+
+
+
 #left-panel-level-buttons-div {
   width: 15vw;
   display: flex;
@@ -1003,6 +1008,47 @@ body.view-control-buttons .viewControlButton {
 .scenesList.listShown 
 {
   max-height: 0px;
+}
+
+
+.pin 
+{
+  border-radius: 100%;
+  width:1vw;
+  height:1vw;
+  background-color: red;
+  position:absolute;
+  display:block;
+  cursor: pointer;
+  
+
+}
+
+.pin .tooltip
+{
+  position:absolute;
+  background-color: #6e6e6e;
+  width:max-content;
+  top:-2vw;
+  visibility: hidden;
+}
+
+
+
+.pinAndShipContainer
+{
+  position: relative;
+  width: 40vw;
+  height: 10vw;
+}
+
+.pinsContainer
+{
+  position: absolute;
+  width:40vw;
+  height:10vw;
+  top:0;
+
 }
 
 

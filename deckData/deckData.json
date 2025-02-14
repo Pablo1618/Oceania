@@ -1,0 +1,84 @@
+{
+    "decks": {
+      "0": [
+        {
+          "name": "Maszynownia - Przedni sektor",
+          "position": {
+          "x": 1153,
+          "y": 548
+          },
+          "link": "maszynownia-przedni-sektor-link",
+          "color": [255, 0, 0]
+      },
+
+      {
+        "name": "Maszynownia - Silnik",
+        "position": {
+        "x": 760,
+        "y": 503
+        },
+        "link": "maszynownia-silnik-link",
+        "color": [255, 0, 0]
+      }
+        
+        
+      ],
+      "1": [
+        {
+            "name": "Salon - Rufa",
+            "position": {
+            "x": 253,
+            "y": 552
+            },
+            "link": "salon-rufa-link",
+            "color": [255, 0, 0]
+        }
+        
+        
+      ],
+      "2": [
+         {
+            "name": "Rufa",
+            "position": {
+            "x": 295,
+            "y": 551
+            },
+            "link": "rufa-link",
+            "color": [255, 0, 0]
+        },
+
+        {
+          "name": "Mostek",
+          "position": {
+          "x": 930,
+          "y": 581
+          },
+          "link": "mostek-link",
+          "color": [255, 0, 0]
+        },
+        {
+          "name": "Mostek - Wejście",
+          "position": {
+          "x": 881,
+          "y": 482
+          },
+          "link": "mostek-wejscie-link",
+          "color": [255, 0, 0]
+        },
+
+        {
+          "name": "Dziób",
+          "position": {
+          "x": 1543,
+          "y": 542
+          },
+          "link": "dziob-link",
+          "color": [255, 0, 0]
+        }
+
+     
+        
+      ]
+
+    }
+  }
