@@ -4,21 +4,21 @@
         {
           "name": "Maszynownia - Przedni sektor",
           "position": {
-          "x": 1153,
-          "y": 548
+          "x": 1150,
+          "y": 510
           },
           "link": "maszynownia-przedni-sektor-link",
-          "color": [255, 0, 0]
+          "color": [255,255,255]
       },
 
       {
         "name": "Maszynownia - Silnik",
         "position": {
-        "x": 760,
-        "y": 503
+        "x": 650,
+        "y": 510
         },
         "link": "maszynownia-silnik-link",
-        "color": [255, 0, 0]
+        "color": [255,255,255]
       }
         
         
@@ -31,19 +31,35 @@
             "y": 552
             },
             "link": "salon-rufa-link",
-            "color": [255, 0, 0]
+            "color": [255,255,255]
         },
         {
           "name": "Mesa",
           "position": {
-          "x": 1056,
-          "y": 621
+          "x": 1035,
+          "y": 675
           },
           "link": "mesa-link",
-          "color": [255, 0, 0]
+          "color": [255,255,255]
+        },
+        {
+          "name": "Serwerownia",
+          "position": {
+          "x": 425,
+          "y": 675
+          },
+          "link": "serwerownia-link",
+          "color": [255,255,255]
+        },
+        {
+          "name": "Pokój załogi",
+          "position": {
+          "x": 770,
+          "y": 285
+          },
+          "link": "pokoj-zalogi-link",
+          "color": [255,255,255]
         }
-
-        
         
       ],
       "2": [
@@ -54,7 +70,7 @@
             "y": 551
             },
             "link": "rufa-link",
-            "color": [255, 0, 0]
+            "color": [255,255,255]
         },
 
         {
@@ -64,7 +80,7 @@
           "y": 581
           },
           "link": "mostek-link",
-          "color": [255, 0, 0]
+          "color": [255,255,255]
         },
         {
           "name": "Mostek - Wejście",
@@ -73,17 +89,17 @@
           "y": 482
           },
           "link": "mostek-wejscie-link",
-          "color": [255, 0, 0]
+          "color": [255,255,255]
         },
 
         {
           "name": "Dziób",
           "position": {
-          "x": 1543,
-          "y": 542
+          "x": 1480,
+          "y": 450
           },
           "link": "dziob-link",
-          "color": [255, 0, 0]
+          "color": [255,255,255]
         },
 
         {
@@ -93,11 +109,8 @@
           "y": 598
           },
           "link": "laboratorium-mokre-link",
-          "color": [255, 0, 0]
+          "color": [255,255,255]
         }
-
-     
-        
       ]
 
     }

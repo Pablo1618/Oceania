@@ -56,14 +56,15 @@
 
 
 
-#left-panel-level-buttons-div {
-  width: 15vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  #left-panel-level-buttons-div {
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 #left-panel-level-buttons-div button {
+  width: 9vw;
   padding: 0.6vw;
   cursor: pointer;
   margin-top: 0.5vw;
@@ -1002,7 +1003,7 @@ body.view-control-buttons .viewControlButton {
   display:block;
   overflow: hidden;
   max-height: 0;
-  transition:1s;
+  transition:0.5s;
 }
 
 .scenesList.listShown 
@@ -1020,8 +1021,12 @@ body.view-control-buttons .viewControlButton {
   position:absolute;
   display:block;
   cursor: pointer;
-  
+  border: 4px solid rgb(224, 187, 18); 
+  opacity: 90%;
+}
 
+.pin:hover{
+  opacity: 100%;
 }
 
 .pin .tooltip
