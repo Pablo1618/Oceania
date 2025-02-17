@@ -1043,6 +1043,7 @@ body.view-control-buttons .viewControlButton {
   position:absolute;
   background-color: #6e6e6e;
   width:max-content;
+  font-size: 1.8vw;
   top:-2vw;
   visibility: hidden;
 }
