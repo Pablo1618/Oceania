@@ -8,8 +8,22 @@
 <link rel="stylesheet" href="vendor/reset.min.css">
 <link rel="stylesheet" href="style.css">
 
+<script src="./AudioControl.js"></script>
+<audio id="serwerownia-audio" src="sounds/serwerownia.mp3" preload="auto"></audio>
+<audio id="dziob-audio" src="sounds/dziob.mp3" preload="auto"></audio>
+<audio id="lab-mokre-audio" src="sounds/lab_mokre.mp3" preload="auto"></audio>
+<audio id="maszynownia-przedni-sektor-audio" src="sounds/maszynownia_przedni_sektor.mp3" preload="auto"></audio>
+<audio id="maszynownia-silnik-audio" src="sounds/maszynownia_silnik.mp3" preload="auto"></audio>
+<audio id="mesa-audio" src="sounds/mesa.mp3" preload="auto"></audio>
+<audio id="mostek-audio" src="sounds/mostek.mp3" preload="auto"></audio>
+<audio id="mostek-wejscie-audio" src="sounds/mostek_wejscie.mp3" preload="auto"></audio>
+<audio id="pokoj-zalogi-audio" src="sounds/pokoj_zalogi.mp3" preload="auto"></audio>
+<audio id="rufa-audio" src="sounds/rufa.mp3" preload="auto"></audio>
+<audio id="salon-rufa-audio" src="sounds/salon_rufa.mp3" preload="auto"></audio>
+
 <script src="ui_controls.js" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=play_arrow" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
   integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer" /> 
@@ -157,8 +171,20 @@
   </div>
 
   <div id="controlButtons">
-    <i class="fa-solid fa-volume-high"></i>
-    <i class="fa-regular fa-circle-question"></i>
+    <div class="btn-tooltip">
+      <button class="material-symbols-outlined" onclick="playAudio()">play_arrow</button>
+      <span class="tooltip-text">Play Audio</span>
+    </div>
+
+    <div class="btn-tooltip">
+        <button class="fa-solid fa-volume-high" onclick="toggleMute()"></button>
+        <span class="tooltip-text">Toggle Mute</span>
+    </div>
+
+    <div class="btn-tooltip">
+        <button class="fa-regular fa-circle-question"></button>
+        <span class="tooltip-text">Help</span>
+    </div>
   </div>
   <div id="belowControlButtonsText">
     Oceania - Spacer Wirtualny
