@@ -1065,6 +1065,38 @@ body.view-control-buttons .viewControlButton {
   top:0;
 
 }
+#controlButtons button {
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+.btn-tooltip {
+  position: relative;
+  display: inline-block;
+}
+.btn-tooltip .tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.btn-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
 
 
 
