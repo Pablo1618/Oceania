@@ -16,24 +16,34 @@ const sceneAudioMap = {
 };
 
 function playAudio() {
-
     const sceneName = document.querySelector('.sceneName').textContent;
-    //console.log(sceneName);
+    const audioId = sceneAudioMap[sceneName];
+
+    if (!audioId) return;
+
+    const newAudio = document.getElementById(audioId);
+
+    if (currentAudio === newAudio) {
+        if (!currentAudio.paused) {
+            currentAudio.pause();
+        } else {
+            currentAudio.play();
+        }
+        return;
+    }
 
     if (currentAudio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
 
-    const audioId = sceneAudioMap[sceneName];
-    //console.log(audioId);
-    if (audioId) {
-        currentAudio = document.getElementById(audioId);
-        if (currentAudio) {
-            currentAudio.muted = isMuted; 
-            currentAudio.play().catch(error => console.log("Error playing audio:", error));
-        }
-    }
+    currentAudio = newAudio;
+    currentAudio.muted = isMuted;
+    currentAudio.play();
+
+    currentAudio.onended = function () {
+        currentAudio.currentTime = 0;
+    };
 }
 
 function toggleMute() {
@@ -52,7 +62,3 @@ function toggleMute() {
         volumeIcon.classList.toggle('fa-volume-off', isMuted);
     }
 }
-
-
-
-
