@@ -1,6 +1,6 @@
 /* global vars */
 let deckData = {};
-let currentDeckLevel = 1;
+let currentDeckLevel = 2;
 const ORIGINAL_DECK_IMAGE_WIDTH = 1920;
 const ORIGINAL_DECK_IMAGE_HEIGHT = 1080;
 
