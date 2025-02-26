@@ -575,13 +575,13 @@ var APP_DATA = {
           "yaw": 0.1108030189502287,
           "pitch": 0.23770561721541839,
           "title": "Fotel nawigatora<br>",
-          "text": "Specjalistyczne krzesło używany przez nawigatorów statku, ułatwiające pracę zespołu.<br>"
+          "text": "Specjalistyczny fotel używany przez nawigatorów statku, ułatwiające pracę zespołu."
         },
         {
           "yaw": 2.161948401126905,
           "pitch": 0.19448845335920062,
           "title": "Fotel nawigatora",
-          "text": "Specjalistyczne krzesło używany przez nawigatorów statku, ułatwiające pracę zespołu."
+          "text": "Specjalistyczny fotel używany przez nawigatorów statku, ułatwiające pracę zespołu."
         }
       ]
     },

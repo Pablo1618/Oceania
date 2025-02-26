@@ -32,15 +32,27 @@
 
 <div id="pano"></div>
 
+
 <div id="left-panel">
   <div id="div_open_left_panel_button">
     <div>PLAN STATKU</div>
     <i class="fa-solid fa-arrow-right"></i>
   </div>
-  <img id="shipImage" src="ui-img/miedzypoklad.png" />
+
+  <div class="pinAndShipContainer">
+    <img id="shipImage" src="ui-img/miedzypoklad.png" />
+    <div class="pinsContainer">
+
+    </div>
+  </div>
+
+  
+
+  
+
   <div id="left-panel-level-buttons-div">
-    <button onCLick="changeLevel(2)">GÓRNY POKŁAD</button>
-    <button onCLick="changeLevel(1)">DOLNY POKŁAD</button>
+    <button onCLick="changeLevel(2)">POKŁAD</button>
+    <button onCLick="changeLevel(1)">MIĘDZYPOKŁAD</button>
     <button onCLick="changeLevel(0)">MASZYNOWNIA</button>
   </div>
 </div>
@@ -63,7 +75,7 @@
       <ul class="expandable-list">
         <li class="list-item">
           <span class="list-title" onclick="toggleList('deck-main')"> <i class="fa-solid fa-angle-down"></i> Pokład</span>
-          <ul id="deck-main" class="hidden">
+          <ul id="deck-main" class="scenesList">
 
             <li onclick="document.getElementById('mostek-link').click();" class="image-item">
               <div class="image-container">
@@ -93,6 +105,13 @@
               </div>
             </li>
 
+            <li onclick="document.getElementById('lab-mokre-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/lab_mokre.jpg" class="image">
+                <div>Laboratorium mokre</div>
+              </div>
+            </li>
+
           </ul>
         </li>
       </ul>
@@ -101,19 +120,12 @@
       <ul class="expandable-list">
         <li class="list-item">
           <span class="list-title" onclick="toggleList('deck-intermediate')"> <i class="fa-solid fa-angle-down"></i> Międzypokład</span>
-          <ul id="deck-intermediate" class="hidden">
+          <ul id="deck-intermediate" class="scenesList">
 
             <li onclick="document.getElementById('mesa-link').click();" class="image-item">
               <div class="image-container">
                 <img src="miniatures/mesa.jpg" class="image">
                 <div>Mesa</div>
-              </div>
-            </li>
-
-            <li onclick="document.getElementById('lab-mokre-link').click();" class="image-item">
-              <div class="image-container">
-                <img src="miniatures/lab_mokre.jpg" class="image">
-                <div>Laboratorium mokre</div>
               </div>
             </li>
 
@@ -124,17 +136,17 @@
               </div>
             </li>
 
-            <li onclick="document.getElementById('pokoj-zalogi-link').click();" class="image-item">
-              <div class="image-container">
-                <img src="miniatures/pokoj_zalogi.jpg" class="image">
-                <div>Pokój Załogi</div>
-              </div>
-            </li>
-
             <li onclick="document.getElementById('serwerownia-link').click();" class="image-item">
               <div class="image-container">
                 <img src="miniatures/serwerownia.jpg" class="image">
                 <div>Serwerownia</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('pokoj-zalogi-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/pokoj_zalogi.jpg" class="image">
+                <div>Pokój załogi</div>
               </div>
             </li>
 
@@ -146,7 +158,7 @@
       <ul class="expandable-list">
         <li class="list-item">
           <span class="list-title" onclick="toggleList('deck-engine')"> <i class="fa-solid fa-angle-down"></i> Maszynownia</span>
-          <ul id="deck-engine" class="hidden">
+          <ul id="deck-engine" class="scenesList">
             
             <li onclick="document.getElementById('maszynownia-silnik-link').click();" class="image-item">
               <div class="image-container">
@@ -245,41 +257,52 @@
 
 <div id="titleBar">
   <h1 class="sceneName"></h1>
+
+  
+<div class="upperRightControlsHolder">
+  <a href="javascript:void(0)" class="upperRightButton" id="autorotateToggle">
+    <img class="icon off" src="img/play.png">
+    <img class="icon on" src="img/pause.png">
+  </a>
+  
+  <a href="javascript:void(0)" class="upperRightButton" id="fullscreenToggle">
+    <img class="icon off" src="img/fullscreen.png">
+    <img class="icon on" src="img/windowed.png">
+  </a>
 </div>
 
-<a href="javascript:void(0)" id="autorotateToggle">
-  <img class="icon off" src="img/play.png">
-  <img class="icon on" src="img/pause.png">
-</a>
+  
+</div>
 
-<a href="javascript:void(0)" id="fullscreenToggle">
-  <img class="icon off" src="img/fullscreen.png">
-  <img class="icon on" src="img/windowed.png">
-</a>
 
 <a href="javascript:void(0)" id="sceneListToggle">
   <img class="icon off" src="img/expand.png">
   <img class="icon on" src="img/collapse.png">
 </a>
 
-<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
-  <img class="icon" src="img/up.png">
-</a>
-<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
-  <img class="icon" src="img/down.png">
-</a>
-<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
-  <img class="icon" src="img/left.png">
-</a>
-<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
-  <img class="icon" src="img/right.png">
-</a>
-<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
-  <img class="icon" src="img/plus.png">
-</a>
-<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
-  <img class="icon" src="img/minus.png">
-</a>
+<div class="viewControlsHolder">
+  <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+    <img class="icon" src="img/up.png">
+  </a>
+  <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+    <img class="icon" src="img/down.png">
+  </a>
+  <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+    <img class="icon" src="img/left.png">
+  </a>
+  <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+    <img class="icon" src="img/right.png">
+  </a>
+  <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+    <img class="icon" src="img/plus.png">
+  </a>
+  <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+    <img class="icon" src="img/minus.png">
+  </a>
+
+</div>
+
+
 
 <script src="vendor/screenfull.min.js" ></script>
 <script src="vendor/bowser.min.js" ></script>
