@@ -159,7 +159,7 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     var el = document.querySelector('#sceneList .scene[data-id="' + scene.data.id + '"]');
     el.addEventListener('click', function() {
       switchScene(scene);
-      playAudio(); // Lector
+      //playAudio(); // Lector
       // On mobile, hide scene list after selecting a scene.
       if (document.body.classList.contains('mobile')) {
         hideSceneList();
@@ -398,6 +398,6 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
 
   // Display the initial scene.
   switchScene(scenes[6]);
-  playAudio(); //Lektor
+  //playAudio(); //Lektor
 
 })();
