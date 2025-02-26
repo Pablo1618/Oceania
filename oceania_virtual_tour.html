@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>OceaniaVirtualTour</title>
+<title>Oceania - ⚓ Spacer Wirtualny</title>
 <meta charset="utf-8">
 <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
 <style> @-ms-viewport { width: device-width; } </style>
 <link rel="stylesheet" href="vendor/reset.min.css">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="/ui-img/logo.png" type="image/x-icon">
+
+<script src="./AudioControl.js"></script>
+<audio id="serwerownia-audio" src="sounds/serwerownia.mp3" preload="auto"></audio>
+<audio id="dziob-audio" src="sounds/dziob.mp3" preload="auto"></audio>
+<audio id="lab-mokre-audio" src="sounds/lab_mokre.mp3" preload="auto"></audio>
+<audio id="maszynownia-przedni-sektor-audio" src="sounds/maszynownia_przedni_sektor.mp3" preload="auto"></audio>
+<audio id="maszynownia-silnik-audio" src="sounds/maszynownia_silnik.mp3" preload="auto"></audio>
+<audio id="mesa-audio" src="sounds/mesa.mp3" preload="auto"></audio>
+<audio id="mostek-audio" src="sounds/mostek.mp3" preload="auto"></audio>
+<audio id="mostek-wejscie-audio" src="sounds/mostek_wejscie.mp3" preload="auto"></audio>
+<audio id="pokoj-zalogi-audio" src="sounds/pokoj_zalogi.mp3" preload="auto"></audio>
+<audio id="rufa-audio" src="sounds/rufa.mp3" preload="auto"></audio>
+<audio id="salon-rufa-audio" src="sounds/salon_rufa.mp3" preload="auto"></audio>
 
 <script src="ui_controls.js" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=play_arrow" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
   integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer" /> 
@@ -18,15 +33,23 @@
 
 <div id="pano"></div>
 
+
 <div id="left-panel">
   <div id="div_open_left_panel_button">
     <div>PLAN STATKU</div>
     <i class="fa-solid fa-arrow-right"></i>
   </div>
-  <img id="shipImage" src="ui-img/miedzypoklad.png" />
+
+  <div class="pinAndShipContainer">
+    <img id="shipImage" src="ui-img/poklad.png" />
+    <div class="pinsContainer">
+
+    </div>
+  </div>
+
   <div id="left-panel-level-buttons-div">
-    <button onCLick="changeLevel(2)">GÓRNY POKŁAD</button>
-    <button onCLick="changeLevel(1)">DOLNY POKŁAD</button>
+    <button onCLick="changeLevel(2)">POKŁAD</button>
+    <button onCLick="changeLevel(1)">MIĘDZYPOKŁAD</button>
     <button onCLick="changeLevel(0)">MASZYNOWNIA</button>
   </div>
 </div>
@@ -49,7 +72,7 @@
       <ul class="expandable-list">
         <li class="list-item">
           <span class="list-title" onclick="toggleList('deck-main')"> <i class="fa-solid fa-angle-down"></i> Pokład</span>
-          <ul id="deck-main" class="hidden">
+          <ul id="deck-main" class="scenesList">
 
             <li onclick="document.getElementById('mostek-link').click();" class="image-item">
               <div class="image-container">
@@ -79,6 +102,13 @@
               </div>
             </li>
 
+            <li onclick="document.getElementById('lab-mokre-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/lab_mokre.jpg" class="image">
+                <div>Laboratorium mokre</div>
+              </div>
+            </li>
+
           </ul>
         </li>
       </ul>
@@ -87,7 +117,7 @@
       <ul class="expandable-list">
         <li class="list-item">
           <span class="list-title" onclick="toggleList('deck-intermediate')"> <i class="fa-solid fa-angle-down"></i> Międzypokład</span>
-          <ul id="deck-intermediate" class="hidden">
+          <ul id="deck-intermediate" class="scenesList">
 
             <li onclick="document.getElementById('mesa-link').click();" class="image-item">
               <div class="image-container">
@@ -96,17 +126,24 @@
               </div>
             </li>
 
-            <li onclick="document.getElementById('lab-mokre-link').click();" class="image-item">
-              <div class="image-container">
-                <img src="miniatures/lab_mokre.jpg" class="image">
-                <div>Laboratorium mokre</div>
-              </div>
-            </li>
-
             <li onclick="document.getElementById('salon-rufa-link').click();" class="image-item">
               <div class="image-container">
                 <img src="miniatures/salon_rufa.jpg" class="image">
                 <div>Salon - Rufa</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('serwerownia-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/serwerownia.jpg" class="image">
+                <div>Serwerownia</div>
+              </div>
+            </li>
+
+            <li onclick="document.getElementById('pokoj-zalogi-link').click();" class="image-item">
+              <div class="image-container">
+                <img src="miniatures/pokoj_zalogi.jpg" class="image">
+                <div>Pokój załogi</div>
               </div>
             </li>
 
@@ -118,7 +155,7 @@
       <ul class="expandable-list">
         <li class="list-item">
           <span class="list-title" onclick="toggleList('deck-engine')"> <i class="fa-solid fa-angle-down"></i> Maszynownia</span>
-          <ul id="deck-engine" class="hidden">
+          <ul id="deck-engine" class="scenesList">
             
             <li onclick="document.getElementById('maszynownia-silnik-link').click();" class="image-item">
               <div class="image-container">
@@ -143,8 +180,20 @@
   </div>
 
   <div id="controlButtons">
-    <i class="fa-solid fa-volume-high"></i>
-    <i class="fa-regular fa-circle-question"></i>
+    <div class="btn-tooltip">
+      <button class="fa-solid fa-play" onclick="playAudio()"></button>
+      <span class="tooltip-text">Odtwórz nagranie</span>
+    </div>
+
+    <div class="btn-tooltip">
+        <button class="fa-solid fa-volume-high" onclick="toggleMute()"></button>
+        <span class="tooltip-text">Wycisz/Odcisz</span>
+    </div>
+
+    <div class="btn-tooltip">
+        <button class="fa-regular fa-circle-question"></button>
+        <span class="tooltip-text">Informacje</span>
+    </div>
   </div>
   <div id="belowControlButtonsText">
     Oceania - Spacer Wirtualny
@@ -205,41 +254,52 @@
 
 <div id="titleBar">
   <h1 class="sceneName"></h1>
+
+  
+<div class="upperRightControlsHolder">
+  <a href="javascript:void(0)" class="upperRightButton" id="autorotateToggle">
+    <img class="icon off" src="img/play.png">
+    <img class="icon on" src="img/pause.png">
+  </a>
+  
+  <a href="javascript:void(0)" class="upperRightButton" id="fullscreenToggle">
+    <img class="icon off" src="img/fullscreen.png">
+    <img class="icon on" src="img/windowed.png">
+  </a>
 </div>
 
-<a href="javascript:void(0)" id="autorotateToggle">
-  <img class="icon off" src="img/play.png">
-  <img class="icon on" src="img/pause.png">
-</a>
+  
+</div>
 
-<a href="javascript:void(0)" id="fullscreenToggle">
-  <img class="icon off" src="img/fullscreen.png">
-  <img class="icon on" src="img/windowed.png">
-</a>
 
 <a href="javascript:void(0)" id="sceneListToggle">
   <img class="icon off" src="img/expand.png">
   <img class="icon on" src="img/collapse.png">
 </a>
 
-<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
-  <img class="icon" src="img/up.png">
-</a>
-<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
-  <img class="icon" src="img/down.png">
-</a>
-<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
-  <img class="icon" src="img/left.png">
-</a>
-<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
-  <img class="icon" src="img/right.png">
-</a>
-<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
-  <img class="icon" src="img/plus.png">
-</a>
-<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
-  <img class="icon" src="img/minus.png">
-</a>
+<div class="viewControlsHolder">
+  <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+    <img class="icon" src="img/up.png">
+  </a>
+  <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+    <img class="icon" src="img/down.png">
+  </a>
+  <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+    <img class="icon" src="img/left.png">
+  </a>
+  <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+    <img class="icon" src="img/right.png">
+  </a>
+  <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+    <img class="icon" src="img/plus.png">
+  </a>
+  <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+    <img class="icon" src="img/minus.png">
+  </a>
+
+</div>
+
+
 
 <script src="vendor/screenfull.min.js" ></script>
 <script src="vendor/bowser.min.js" ></script>

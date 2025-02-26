@@ -1,0 +1,117 @@
+{
+    "decks": {
+      "0": [
+        {
+          "name": "Maszynownia - Przedni sektor",
+          "position": {
+          "x": 1150,
+          "y": 510
+          },
+          "link": "maszynownia-przedni-sektor-link",
+          "color": [255,255,255]
+      },
+
+      {
+        "name": "Maszynownia - Silnik",
+        "position": {
+        "x": 650,
+        "y": 510
+        },
+        "link": "maszynownia-silnik-link",
+        "color": [255,255,255]
+      }
+        
+        
+      ],
+      "1": [
+        {
+            "name": "Salon - Rufa",
+            "position": {
+            "x": 253,
+            "y": 552
+            },
+            "link": "salon-rufa-link",
+            "color": [255,255,255]
+        },
+        {
+          "name": "Mesa",
+          "position": {
+          "x": 1035,
+          "y": 675
+          },
+          "link": "mesa-link",
+          "color": [255,255,255]
+        },
+        {
+          "name": "Serwerownia",
+          "position": {
+          "x": 425,
+          "y": 675
+          },
+          "link": "serwerownia-link",
+          "color": [255,255,255]
+        },
+        {
+          "name": "Pokój załogi",
+          "position": {
+          "x": 770,
+          "y": 285
+          },
+          "link": "pokoj-zalogi-link",
+          "color": [255,255,255]
+        }
+        
+      ],
+      "2": [
+         {
+            "name": "Rufa",
+            "position": {
+            "x": 295,
+            "y": 551
+            },
+            "link": "rufa-link",
+            "color": [255,255,255]
+        },
+
+        {
+          "name": "Mostek",
+          "position": {
+          "x": 930,
+          "y": 581
+          },
+          "link": "mostek-link",
+          "color": [255,255,255]
+        },
+        {
+          "name": "Mostek - Wejście",
+          "position": {
+          "x": 881,
+          "y": 482
+          },
+          "link": "mostek-wejscie-link",
+          "color": [255,255,255]
+        },
+
+        {
+          "name": "Dziób",
+          "position": {
+          "x": 1480,
+          "y": 450
+          },
+          "link": "dziob-link",
+          "color": [255,255,255]
+        },
+
+        {
+          "name": "Laboratorium Mokre",
+          "position": {
+          "x": 586,
+          "y": 598
+          },
+          "link": "lab-mokre-link",
+          "color": [255,255,255]
+        }
+      ]
+
+    }
+  }

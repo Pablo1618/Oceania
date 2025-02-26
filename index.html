@@ -4,16 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oceania 🚢⚓ - spacer wirtualny po statku</title>
+    <title>Oceania - ⚓ Spacer Wirtualny</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="icon" href="/ui_photos/logo.png" type="image/x-icon">
+    <link rel="icon" href="/ui-img/logo.png" type="image/x-icon">
 </head>
 
 <body>
+
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <p>Prototyp Spaceru Wirtualnego</p>
+            <h4>V: 26.02.2025</h4>
+            <button id="close-notification" class="close-button">X</button>
+        </div>
+    </div>
+
     <div class="container">
         <img class="logo" src="https://www.iopan.pl/assets/images/app/logo-pl.svg" alt="Logo IO PAN">
         <h1 class="outfit-title">STATEK BADAWCZY <br> <span
@@ -25,12 +34,63 @@
             Bałtyk i Arktyka.
         </p>
         <p class="description_below">Przenieś się na pokład statku i zobacz jak wygląda praca naukowców na morzu.</p>
-        <!-- <button class="learn-more-button md-18" onclick="window.open('oceania_virtual_tour.html', '_blank')"> -->
-        <button class="learn-more-button md-18" onclick="window.location.href='oceania_virtual_tour.html'">
+        <button class="learn-more-button md-18" onclick="window.location.href='oceania_virtual_tour.html'; playIntro();">
             <i class="material-icons md-1">vrpano</i>
-            Rozpocznij Wirtualny spacer 360°
-        </button>
+            Rozpocznij Wirtualny spacer 360°</button>
     </div>
+
+    <footer>
+        <svg viewBox="0 0 120 28">
+         <defs> 
+           <mask id="xxx">
+             <circle cx="7" cy="12" r="40" fill="#fff" />
+           </mask>
+           
+           <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+              <feColorMatrix in="blur" mode="matrix" values="
+                   1 0 0 0 0  
+                   0 1 0 0 0  
+                   0 0 1 0 0  
+                   0 0 0 13 -9" result="goo" />
+              <feBlend in="SourceGraphic" in2="goo" />
+              </filter>
+             <path id="wave" d="M 0,10 C 30,10 30,15 60,15 90,15 90,10 120,10 150,10 150,15 180,15 210,15 210,10 240,10 v 28 h -240 z" />
+          </defs> 
+        
+           <use id="wave3" class="wave" xlink:href="#wave" x="0" y="-2" ></use> 
+           <use id="wave2" class="wave" xlink:href="#wave" x="0" y="0" ></use>
+         
+          <!-- <g class="topball">
+          <circle class="ball" cx="110" cy="8" r="4" stroke="none" stroke-width="0" fill="red" />
+        
+            <g class="arrow">
+            <polyline class="" points="108,8 110,6 112,8" fill="none"  />
+            <polyline class="" points="110,6 110,10.5" fill="none"  />
+            </g>
+            
+          </g> -->
+
+          <g class="gooeff">
+          <circle class="drop drop1" cx="20" cy="2" r="1.8"  />
+          <circle class="drop drop2" cx="25" cy="2.5" r="1.5"  />
+          <circle class="drop drop3" cx="16" cy="2.8" r="1.2"  />
+        <use id="wave1" class="wave" xlink:href="#wave" x="0" y="1" />
+
+        </svg>
+    </footer>
+
+    <script>
+        function playIntro() {
+            var audio = new Audio('sounds/intro.mp3');
+            audio.play();
+        }
+
+        document.getElementById('close-notification').addEventListener('click', function() {
+            document.getElementById('notification').style.display = 'none';
+            playIntro();
+        });
+    </script>
 </body>
 
 </html>
