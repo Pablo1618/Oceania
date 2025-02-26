@@ -36,7 +36,7 @@
   align-items: center; 
   text-align: center;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 #div_open_left_panel_button:hover{
   background-color: #dddddd;
@@ -122,6 +122,10 @@
   align-items: center;
   text-align: center;
   font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+#div_open_right_panel_button:hover{
+  background-color: #dddddd;
 }
 #right-panel.open {
   right: 0;
@@ -1043,7 +1047,7 @@ body.view-control-buttons .viewControlButton {
   position:absolute;
   background-color: #6e6e6e;
   width:max-content;
-  font-size: 1.8vw;
+  font-size: 1.2vw;
   top:-2vw;
   visibility: hidden;
 }
@@ -1066,6 +1070,7 @@ body.view-control-buttons .viewControlButton {
 
 }
 #controlButtons button {
+  font-size: 1vw;
   background-color: transparent;
   border: none;
   background-repeat: no-repeat;

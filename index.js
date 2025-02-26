@@ -78,8 +78,17 @@
       { cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg" });
     var geometry = new Marzipano.CubeGeometry(data.levels);
 
-    var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180);
-    var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
+    //var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180);
+    //var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
+
+    var pitchLimiter = Marzipano.RectilinearView.limit.pitch(0.004, 0.4); // Ograniczenie pitch do +-30°
+    var fovLimiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180); // Ograniczenie FOV
+    var limiter = function(fov, pitch, yaw) {
+        return pitchLimiter(fov, pitch, yaw) && fovLimiter(fov, pitch, yaw);
+    };
+
+var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
+
 
     var scene = viewer.createScene({
       source: source,
@@ -150,6 +159,7 @@
     var el = document.querySelector('#sceneList .scene[data-id="' + scene.data.id + '"]');
     el.addEventListener('click', function() {
       switchScene(scene);
+      playAudio(); // Lector
       // On mobile, hide scene list after selecting a scene.
       if (document.body.classList.contains('mobile')) {
         hideSceneList();
@@ -387,6 +397,7 @@
   }
 
   // Display the initial scene.
-  switchScene(scenes[0]);
+  switchScene(scenes[6]);
+  playAudio(); //Lektor
 
 })();

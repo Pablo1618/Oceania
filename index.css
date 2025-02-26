@@ -60,7 +60,7 @@ body {
     text-shadow: 0.08em 0.08em 0.12em rgba(0, 0, 0, 0.5);
 }
 
-.learn-more-button {
+/* .learn-more-button {
     font-family: "Outfit", sans-serif;
     background-color: #ffffff;
     border: none;
@@ -73,7 +73,7 @@ body {
     margin-top: 1vw;
     font-weight: bold;
     cursor: pointer;
-}
+} */
 
 .material-icons.md-1 {
     font-size: 1.4vw;
@@ -81,4 +81,30 @@ body {
     vertical-align: middle; 
     margin-right: 0.2vw; 
 }
+
+.learn-more-button {
+    font-family: "Outfit", sans-serif;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: none;
+    color: rgba(0, 67, 143, 0.85);
+    padding: 0.6vw 1.8vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8vw;
+    margin-top: 1vw;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.learn-more-button:hover {
+    /* background-color: #4CAF50; Zmiana koloru tła */
+    background-color:rgba(5, 81, 180, 0.5);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 
