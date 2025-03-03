@@ -1,5 +1,33 @@
-Project for Institute of Oceanology of the Polish Academy of Sciences
+<img src="https://www.iopan.pl/assets/images/app/logo-pl.svg" width="100%" height="auto">
 
-A virtual walk around the ship Oceania belonging to the Institute of Oceanology
+# Oceania Virtual Walk
 
-![oceania](https://github.com/user-attachments/assets/f84f969f-8bb7-4943-9ce8-5f32c9e85987)
+A virtual walk around the ship Oceania belonging to the Institute of Oceanology.
+
+## Team members
+
+- Paweł Wawrzyński
+- Michał Grabowski
+- Patryk Sawuk
+
+## How to access the Virtual Walk
+
+https://pablo1618.github.io/Oceania/
+
+## How to run it locally
+
+- Download project files and unzip them
+
+- Open the project using Visual Studio Code
+
+- Install Live Server extension
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdzGyT8r4-CUSDPxUgQpXfkDTTr-uDSrN1sw&s" width="400px" height="auto">
+
+- Launch local server by pressing Go Live button in the bottom right corner
+
+#### Now you can access the virtual tour by using:
+http://127.0.0.1:5500/
+
+<img src="https://i.ibb.co/6RFGcNLN/Zrzut-ekranu-2025-03-03-195132.png" width="100%" height="auto">
+<img src="https://i.ibb.co/5W605tFQ/Zrzut-ekranu-2025-03-03-195304.png" width="100%" height="auto" style="margin-top:15px;">
