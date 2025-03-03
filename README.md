@@ -1,4 +1,4 @@
-<img src="https://www.iopan.pl/assets/images/app/logo-pl.svg" width="100%" height="auto">
+<img src="https://www.iopan.pl/assets/images/app/logo-pl.svg" width="75%" height="auto">
 
 # Oceania Virtual Walk
 
