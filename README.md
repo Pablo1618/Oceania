@@ -30,4 +30,5 @@ https://pablo1618.github.io/Oceania/
 http://127.0.0.1:5500/
 
 <img src="https://i.ibb.co/6RFGcNLN/Zrzut-ekranu-2025-03-03-195132.png" width="100%" height="auto">
+
 <img src="https://i.ibb.co/5W605tFQ/Zrzut-ekranu-2025-03-03-195304.png" width="100%" height="auto" style="margin-top:15px;">
