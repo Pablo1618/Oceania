@@ -60,9 +60,9 @@ function toggleMute() {
         }
     });
 
-    const volumeIcon = document.querySelector('.fa-solid.fa-volume-high, .fa-solid.fa-volume-off');
+    const volumeIcon = document.querySelector('.fa-solid.fa-volume-high, .fa-solid.fa-volume-xmark');
     if (volumeIcon) {
         volumeIcon.classList.toggle('fa-volume-high', !isMuted);
-        volumeIcon.classList.toggle('fa-volume-off', isMuted);
+        volumeIcon.classList.toggle('fa-volume-xmark', isMuted);
     }
 }

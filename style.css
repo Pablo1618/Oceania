@@ -137,8 +137,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  height:88%;
-  margin-bottom:0.5vw;
+  height:90%;
+  margin-bottom:1.5vw;
 }
 #right-panel #iopan-logo{
   margin-bottom:1.5vw;
@@ -214,7 +214,8 @@ ul {
   margin-left:1vw;
   width:13vw;
   overflow: auto;
-  height:30vw;
+  /* height:30vw; */
+  height:99%;
   scrollbar-width: none;
 }
 .locationsList::-webkit-scrollbar {
@@ -295,6 +296,107 @@ ul {
 #description-title{
   font-size: 2vw;
   letter-spacing: 0.5vw;
+}
+
+/* Panel na dole */
+#bottom-panel {
+  position: fixed;
+  left: 35%;
+  bottom: 1vw;
+  width: 30%;
+  height: 4vw;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.5s ease;
+  z-index: 1000;
+  border-radius: 1.7vw;
+  margin-bottom: 0;
+  gap: 3vw;
+}
+#bottom-panel button {
+  background: rgba(255, 255, 255, 0.95);
+  border:none;
+  border-radius: 50%;
+  padding: 0.5vw;
+  color: #333;
+  font-size: 1.5vw;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.7vw;
+  height: 2.7vw;
+}
+#bottom-panel button:hover {
+  transform: scale(1.1);
+  color: #007bff;
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  opacity: 95%;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 
@@ -960,7 +1062,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 /* View control buttons */
 
 .viewControlButton {
-  display: flex;
+  /* display: flex; */
   bottom: 0;
   left: 50%;
   /* width: min(6vw, 40px);
@@ -1000,7 +1102,8 @@ body.view-control-buttons .viewControlButton {
 /* for the view controls at the bottom */
 .viewControlsHolder
 {
-  display:flex;
+  /* display:flex; */
+  display:none;
   position:absolute;
 
   width:100%;

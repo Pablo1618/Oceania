@@ -33,6 +33,27 @@
 
 <div id="pano"></div>
 
+<div id="bottom-panel">
+    <div class="btn-tooltip">
+      <button class="fa-solid fa-play" onclick="playAudio()"></button>
+      <span class="tooltip-text">Odtwórz nagranie</span>
+    </div>
+
+    <div class="btn-tooltip">
+        <button class="fa-solid fa-volume-high" onclick="toggleMute()"></button>
+        <span class="tooltip-text">Wycisz/Odcisz</span>
+    </div>
+
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+
+    <div class="btn-tooltip">
+      <button class="fa-regular fa-comment-dots" onclick="showDescription()"></button>
+      <span class="tooltip-text">Informacje</span>
+  </div>
+</div>
 
 <div id="left-panel">
   <div id="div_open_left_panel_button">
@@ -179,7 +200,7 @@
 
   </div>
 
-  <div id="controlButtons">
+  <!-- <div id="controlButtons">
     <div class="btn-tooltip">
       <button class="fa-solid fa-play" onclick="playAudio()"></button>
       <span class="tooltip-text">Odtwórz nagranie</span>
@@ -191,10 +212,11 @@
     </div>
 
     <div class="btn-tooltip">
-        <button class="fa-regular fa-circle-question" onclick="showDescription()"></button>
+        <button class="fa-solid fa-circle-info" onclick="showDescription()"></button>
         <span class="tooltip-text">Informacje</span>
     </div>
-  </div>
+  </div> -->
+
   <div id="belowControlButtonsText">
     Oceania - Spacer Wirtualny
   </div> 
