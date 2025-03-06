@@ -192,15 +192,17 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
   }
 
   function switchScene(scene) {
-    if(isAutoLectorON){
-      playAudio(); // Lektor
-    }
+
     stopAutorotate();
     scene.view.setParameters(scene.data.initialViewParameters);
     scene.scene.switchTo();
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
+
+    if(isAutoLectorON){
+      playAudio(); // Lektor
+    }
   }
 
   function updateSceneName(scene) {
@@ -400,8 +402,5 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
 
   // Display the initial scene.
   switchScene(scenes[6]);
-  if(isAutoLectorON){
-    playAudio(); // Lektor
-  }
 
 })();

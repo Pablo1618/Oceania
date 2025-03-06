@@ -25,7 +25,7 @@ function playAudio() {
     const sceneName = document.querySelector('.sceneName').textContent;
     const audioId = sceneAudioMap[sceneName];
     
-
+    console.log(sceneName);
     if (!audioId) return;
     if ( JSON.parse(localStorage.getItem('audioMuted'))) return;
 
