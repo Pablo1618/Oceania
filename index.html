@@ -11,30 +11,18 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="icon" href="/ui-img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
     <div id="notification" class="notification">
         <div class="notification-content">
-            <h3>Wybierz tryb audio dla spaceru wirtualnego</h3>
-            <p>Doświadcz spaceru z lektorem i muzyką lub bez dźwięku</p>
+            <p>Prototyp Spaceru Wirtualnego</p>
+            <h4>V: 26.02.2025</h4>
             <button id="close-notification" class="close-button">X</button>
-            <div class="button-container">
-                <button id="with-sound" class="learn-more-button enable-sound-button">
-                    <i class="fa-solid fa-volume-high"></i> &nbsp; Z dźwiękiem
-                </button>
-                <button id="without-sound" class="learn-more-button enable-sound-button">
-                    <i class="fa-solid fa-volume-xmark"></i> &nbsp; Bez dźwięku
-                </button>
-            </div>
         </div>
     </div>
 
-    
     <div class="container">
         <img class="logo" src="https://www.iopan.pl/assets/images/app/logo-pl.svg" alt="Logo IO PAN">
         <h1 class="outfit-title">STATEK BADAWCZY <br> <span
@@ -101,19 +89,7 @@
 
         document.getElementById('close-notification').addEventListener('click', function() {
             document.getElementById('notification').style.display = 'none';
-            localStorage.setItem('audioMuted', 'false');
             playIntro();
-        });
-
-        document.getElementById('with-sound').addEventListener('click', function() {
-            document.getElementById('notification').style.display = 'none';
-            localStorage.setItem('audioMuted', 'false');
-            playIntro();
-        });
-
-        document.getElementById('without-sound').addEventListener('click', function() {
-            document.getElementById('notification').style.display = 'none';
-            localStorage.setItem('audioMuted', 'true');
         });
     </script>
 </body>
