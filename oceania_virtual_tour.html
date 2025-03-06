@@ -191,7 +191,7 @@
     </div>
 
     <div class="btn-tooltip">
-        <button class="fa-regular fa-circle-question"></button>
+        <button class="fa-regular fa-circle-question" onclick="showDescription()"></button>
         <span class="tooltip-text">Informacje</span>
     </div>
   </div>
@@ -200,6 +200,14 @@
   </div> 
   
 
+</div>
+
+<div id="description-div">
+  <div id="description-content-div">
+      <h1 id="description-title">Lorem ipsum</h1>
+      <p id="description-paragraph"></p>
+      <button id="description-close-button" class="description-close" onClick="hideDescription()">X</button>
+  </div>
 </div>
 
 <div id="sceneList">

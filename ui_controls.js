@@ -39,9 +39,19 @@ TEMPLATE FOR JSON SCENE
 
 
 
-//loading the deck data
+//loading the deck data and descriptions
 window.onload = function()
 {
+    fetch('descriptions.json')
+    .then(response => response.json())
+    .then(data => {
+        descriptions = data;
+    })
+    .catch(error => {
+        console.error('Błąd podczas ładowania opisu:', error);
+        descriptions = {};
+    });
+
     fetch('deckData/deckData.json')
     .then(response => response.json())
     .then(data => 
@@ -152,3 +162,47 @@ function toggleList(id) {
 
   }
   
+//   function showDescription() {
+
+//     const descriptionDiv = document.getElementById('description-div');
+//     descriptionDiv.style.display = 'flex';
+//     const descriptionContent = document.getElementById('description-content-div');
+//     setTimeout(() => {
+//         descriptionContent.style.marginTop = '0%';
+//         descriptionDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+//     }, 10);
+// }
+
+function showDescription() {
+    const descriptionDiv = document.getElementById('description-div');
+    descriptionDiv.style.display = 'flex';
+    const descriptionContent = document.getElementById('description-content-div');
+    
+    setTimeout(() => {
+        descriptionContent.style.marginTop = '0%';
+        descriptionDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    }, 10);
+
+    const sceneName = document.querySelector('.sceneName').textContent;
+    const descriptionTitle = document.getElementById('description-title')
+    const descriptionParagraph = document.getElementById('description-paragraph')
+    if (descriptions[sceneName]) {
+        descriptionTitle.innerHTML = sceneName;
+        descriptionParagraph.innerHTML = descriptions[sceneName];
+    } else {
+        descriptionTitle.innerHTML = '';
+        descriptionParagraph.innerHTML = 'Brak opisu dla tej sceny.';
+    }
+}
+
+function hideDescription(){
+    const descriptionContent = document.getElementById('description-content-div');
+    setTimeout(() => {
+        descriptionContent.style.marginTop = '-100%';
+        document.getElementById('description-div').style.backgroundColor = 'rgba(0, 0, 0, 0.0)';
+    }, 10);
+
+    setTimeout(() => {
+        document.getElementById('description-div').style.display = 'none';
+    }, 600);
+}
