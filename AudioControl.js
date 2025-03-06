@@ -1,6 +1,11 @@
 let currentAudio = null;
 //let isMuted = false;
 let isMuted = JSON.parse(localStorage.getItem('audioMuted')) || false;
+let isAutoLectorON = JSON.parse(localStorage.getItem('autoLector')) || false;
+
+document.addEventListener('DOMContentLoaded', function() {
+document.getElementById('autoLectorCheckbox').checked = isAutoLectorON;
+});
 
 const sceneAudioMap = {
     "Serwerownia": "serwerownia-audio",
@@ -65,4 +70,11 @@ function toggleMute() {
         volumeIcon.classList.toggle('fa-volume-high', !isMuted);
         volumeIcon.classList.toggle('fa-volume-xmark', isMuted);
     }
+}
+
+function toggleAutoLector(){
+    isAutoLectorON = !isAutoLectorON;
+
+    console.log('Auto-lector-toggled')
+    localStorage.setItem('autoLector', JSON.stringify(isAutoLectorON));
 }

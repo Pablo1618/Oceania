@@ -21,14 +21,14 @@
     <div id="notification" class="notification">
         <div class="notification-content">
             <h3>Wybierz tryb audio dla spaceru wirtualnego</h3>
-            <p>Doświadcz spaceru z lektorem i muzyką lub bez dźwięku</p>
+            <p>Doświadcz spaceru z lektorem lub bez dźwięku</p>
             <button id="close-notification" class="close-button">X</button>
             <div class="button-container">
                 <button id="with-sound" class="learn-more-button enable-sound-button">
-                    <i class="fa-solid fa-volume-high"></i> &nbsp; Z dźwiękiem
+                    <i class="fa-solid fa-volume-high"></i> &nbsp; Z lektorem
                 </button>
                 <button id="without-sound" class="learn-more-button enable-sound-button">
-                    <i class="fa-solid fa-volume-xmark"></i> &nbsp; Bez dźwięku
+                    <i class="fa-solid fa-microphone-slash"></i> &nbsp; Bez lektora
                 </button>
             </div>
         </div>
@@ -101,19 +101,20 @@
 
         document.getElementById('close-notification').addEventListener('click', function() {
             document.getElementById('notification').style.display = 'none';
-            localStorage.setItem('audioMuted', 'false');
+            localStorage.setItem('autoLector', 'true');
             playIntro();
         });
 
         document.getElementById('with-sound').addEventListener('click', function() {
             document.getElementById('notification').style.display = 'none';
-            localStorage.setItem('audioMuted', 'false');
+            localStorage.setItem('autoLector', 'true');
             playIntro();
         });
 
         document.getElementById('without-sound').addEventListener('click', function() {
             document.getElementById('notification').style.display = 'none';
-            localStorage.setItem('audioMuted', 'true');
+            localStorage.setItem('autoLector', 'false');
+            playIntro();
         });
     </script>
 </body>
