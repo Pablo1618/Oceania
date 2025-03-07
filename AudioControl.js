@@ -26,8 +26,8 @@ function playAudio() {
     const audioId = sceneAudioMap[sceneName];
     
     console.log(sceneName);
+
     if (!audioId) return;
-    if ( JSON.parse(localStorage.getItem('audioMuted'))) return;
 
     const newAudio = document.getElementById(audioId);
 
@@ -56,7 +56,6 @@ function playAudio() {
 
 function toggleMute() {
     isMuted = !isMuted;
-    localStorage.setItem('audioMuted', JSON.stringify(isMuted));
     
     Object.values(sceneAudioMap).forEach(audioId => {
         const audioElement = document.getElementById(audioId);
