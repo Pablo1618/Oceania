@@ -53,7 +53,7 @@ var APP_DATA = {
           "yaw": -1.980432376930585,
           "pitch": -0.020128523218073013,
           "title": "Zegar centralny GPS<br>",
-          "text": "Urządzenie, które synchronizuje czas w systemach wykorzystujących sygnały z Globalnego Systemu Pozycjonowania (GPS)"
+          "text": "Urządzenie, które synchronizuje czas w systemach wykorzystujących sygnały z Globalnego Systemu Pozycjonowania (GPS)."
         },
         {
           "yaw": -2.310466278255694,
@@ -191,7 +191,7 @@ var APP_DATA = {
           "yaw": -2.8392077438321923,
           "pitch": 0.08637715238985777,
           "title": "Króćce do węży<br>",
-          "text": "System próźniowy<br>"
+          "text": "Całość działa w oparciu o system próżniowy.<br>"
         },
         {
           "yaw": -2.304780979196172,
@@ -365,13 +365,13 @@ var APP_DATA = {
           "yaw": -2.4428081597100224,
           "pitch": 0.009352293793988053,
           "title": "Główny silnik MTU<br>",
-          "text": "Wysokiej jakości silnik spalinowy o sile 650KM.<br>"
+          "text": "Silnik wysokoprężny marki MTU Friedrichshafen o mocy 816KM. Prędkość maksymalna statku na silniku to 13,5 węzłów, a pod żaglami 6 węzłów."
         },
         {
           "yaw": -1.3774278916996217,
           "pitch": 0.12386380876499103,
           "title": "Kolektor wody użytkowej<br>",
-          "text": "Element instalacji wodnej, który służy do rozdzielania i dystrybucji \nwody użytkowej (czyli wody przeznaczonej do spożycia, mycia, prania \nitp.)"
+          "text": "Element instalacji wodnej, który służy do rozdzielania i dystrybucji wody użytkowej (czyli wody przeznaczonej do spożycia, mycia, prania itp.)"
         },
         {
           "yaw": -0.8156033378346308,
@@ -482,7 +482,7 @@ var APP_DATA = {
           "yaw": 3.0746364938349124,
           "pitch": 0.1607679815318157,
           "title": "Drzwi do pentry<br>",
-          "text": "Pomieszczenie z dobrze zaopatrzoną lodówką, kuchenką<br>mikrofalową, grillem, zlewem i zmywarką i naczyniami stołowymi."
+          "text": "Pomieszczenie z lodówką, kuchenką mikrofalową, grillem, zlewem i zmywarką i naczyniami stołowymi."
         },
         {
           "yaw": -2.214008565474723,
@@ -570,18 +570,6 @@ var APP_DATA = {
           "pitch": -0.31013935548073945,
           "title": "Panel górny<br>",
           "text": "Zegar centralny GPS i miernik przechyłu jednostki.<br>"
-        },
-        {
-          "yaw": 0.1108030189502287,
-          "pitch": 0.23770561721541839,
-          "title": "Fotel nawigatora<br>",
-          "text": "Specjalistyczny fotel używany przez nawigatorów statku, ułatwiające pracę zespołu."
-        },
-        {
-          "yaw": 2.161948401126905,
-          "pitch": 0.19448845335920062,
-          "title": "Fotel nawigatora",
-          "text": "Specjalistyczny fotel używany przez nawigatorów statku, ułatwiające pracę zespołu."
         }
       ]
     },
@@ -725,7 +713,7 @@ var APP_DATA = {
           "yaw": -2.933526469745212,
           "pitch": 0.36904344331701466,
           "title": "Drzwi z blokadą<br>",
-          "text": "Za nimi kamizelki ratunkowe<br>"
+          "text": "Za drzwiami znajdują się kamizelki ratunkowe."
         },
         {
           "yaw": 1.119151190644093,
@@ -737,13 +725,13 @@ var APP_DATA = {
           "yaw": 1.0517704376770176,
           "pitch": 0.8139214941072961,
           "title": "Dolna koja<br>",
-          "text": "W szufladach pod nią kombinezony ratunkowe.<br>"
+          "text": "W szufladach pod nią znajdują się kombinezony ratunkowe.<br>"
         },
         {
-          "yaw": 2.4180184313844713,
-          "pitch": 0.6452328700658132,
-          "title": "Biurko z krzesłem i telefonem<br>",
-          "text": "Sieć wewnątrz-statkowa.<br>"
+          "yaw": 2.0980184313844713,
+          "pitch": 0.3752328700658132,
+          "title": "Telefon wewnętrzny<br>",
+          "text": "Umożliwia komunikację pomiędzy cżłonkami załogi statku - sieć wewnątrz-statkowa."
         },
         {
           "yaw": -0.5829948699439775,
@@ -800,7 +788,7 @@ var APP_DATA = {
           "yaw": -2.572332565879492,
           "pitch": 0.37598910654725337,
           "title": "Winda pomiarowa<br>",
-          "text": "2000m kabloliny<br>"
+          "text": "2000m kabloliny.<br>"
         },
         {
           "yaw": -2.0893849089351626,
@@ -818,7 +806,7 @@ var APP_DATA = {
           "yaw": -1.6484010309410202,
           "pitch": -0.03323298108108297,
           "title": "Sterownik żurawika<br>",
-          "text": "Długość wydanej liny, prędkość wydania liny.<br>"
+          "text": "Umożliwia sterowanie długością i prędkością wydawanej liny.<br>"
         },
         {
           "yaw": -1.3106330666215626,
@@ -829,8 +817,8 @@ var APP_DATA = {
         {
           "yaw": 2.4170265799165405,
           "pitch": 0.071734546261073,
-          "title": "Żurawki załadunkowy oraz pomiarowy<br>",
-          "text": "Potrawi podnieść ciężar do 1 tony.<br>"
+          "title": "Żuraw załadunkowy oraz pomiarowy<br>",
+          "text": "Maksymalne obciążenie robocze żurawia to 1 tona.<br>"
         },
         {
           "yaw": 1.1398349659970624,
@@ -842,13 +830,13 @@ var APP_DATA = {
           "yaw": 0.3627063493060838,
           "pitch": -0.18024829930521236,
           "title": "Bramownica rufowa<br>",
-          "text": "Maksymalne obciążenie robocze 2,5 tony<br>"
+          "text": "Umożliwia podczepienie urządzeń i osprzętu do badań - jej maksymalne obciążenie robocze 2,5 tony<br>"
         },
         {
           "yaw": -2.235898106843166,
           "pitch": -0.26080883285798784,
           "title": "Szpardek<br>",
-          "text": "Pokład górny.<br>"
+          "text": "Tak nazywana jest powierzchnia pokładu statku znajdująca się na nadbudówce lub pomoście wystających ponad pokład główny jednostki.<br>"
         }
       ]
     },
