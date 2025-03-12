@@ -23,6 +23,7 @@
 
 <script src="./AudioControl.js?version=2"> </script>
 <script src="ui_controls.js?version=2" defer></script>
+<script src="VRscripts/mainVR.js?version=2" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=play_arrow" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -34,6 +35,8 @@
 <div id="pano"></div>
 
 <div id="bottom-panel">
+    <div id="autoLectorCheckboxText">Auto-Lektor</div>
+
     <div class="btn-tooltip">
       <button class="fa-solid fa-play" onclick="playAudio()"></button>
       <span class="tooltip-text">Odtwórz nagranie</span>
@@ -47,13 +50,19 @@
     <label class="switch btn-tooltip">
       <input id="autoLectorCheckbox" type="checkbox" onclick="toggleAutoLector()">
       <span class="slider round"></span>
-      <span class="tooltip-text">Automatyczny lektor</span>
-    </label>
+      <span class="tooltip-text">Automatyczny Lektor</span>
+    </label>    
+
+    <div class="btn-tooltip">
+      <button class="fa-solid fa-vr-cardboard" id="vr-mode-button"></button>
+      <span class="tooltip-text">Tryb Wirtualnej Rzeczywistości</span>
+    </div>
 
     <div class="btn-tooltip">
       <button class="fa-regular fa-comment-dots" onclick="showDescription()"></button>
       <span class="tooltip-text">Informacje</span>
   </div>
+
 </div>
 
 <div id="left-panel">
