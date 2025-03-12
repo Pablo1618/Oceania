@@ -70,6 +70,20 @@
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
 
+  /*
+    This basically prevents the default controls from intervening when we are in VrMode
+
+    -- Robelek --
+  */
+  viewer._update = viewer.update;
+  viewer.update = function()
+  {
+    if(!window.inVrMode)
+    {
+      viewer._update();
+    }
+  }
+
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
     var urlPrefix = "tiles";
@@ -187,6 +201,17 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
   controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
   controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
 
+
+  /*
+    The stuff below adds some globals, so we can use them in mainVR.js 
+
+    -- Robelek --
+  */
+  window.marzipanoStage = viewer.stage();
+  window.marzipanoViewer = viewer;
+
+
+
   function sanitize(s) {
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }
@@ -199,6 +224,9 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
+
+    window.marzipanoScene = scene;
+    console.log("Scene switched (index.js)")
 
     if(isAutoLectorON){
       playAudio(); // Lektor

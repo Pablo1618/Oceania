@@ -23,18 +23,16 @@ However, that code was several years old and required some substantial modificat
 
 'use strict';
 
+window.inVrMode = false;
+
 var mat4 = Marzipano.dependencies.glMatrix.mat4;
 var quat = Marzipano.dependencies.glMatrix.quat;
 var degToRad = Marzipano.util.degToRad;
 
 var viewerElement = document.querySelector("#pano");
 var vrModeButton = document.querySelector("#vr-mode-button")
-// Create stage and register renderers.
-var stage = new Marzipano.WebGlStage();
-Marzipano.registerDefaultRenderers(stage);
 
-// Insert stage into the DOM.
-viewerElement.appendChild(stage.domElement());
+var stage = window.marzipanoStage;
 
 // Update the stage size whenever the window is resized.
 function updateSize() {
@@ -46,80 +44,71 @@ function updateSize() {
 updateSize();
 window.addEventListener("resize", updateSize);
 
-// Create geometry.
-var geometry = new Marzipano.CubeGeometry([
-  { tileSize: 256, size: 256, fallbackOnly: true },
-  { tileSize: 512, size: 512 },
-  { tileSize: 512, size: 1024 },
-  { tileSize: 512, size: 2048 },
-  { tileSize: 512, size: 4096 }
-]);
-
-// Create a normal Marzipano view for non-XR mode
-var limiter = Marzipano.RectilinearView.limit.traditional(4096, 110 * Math.PI / 180);
-var view = new Marzipano.RectilinearView({ yaw: 0, pitch: 0, roll: 0 }, limiter);
-
-// Create layer.
-var layer = createLayer(stage, view, geometry);
-stage.addLayer(layer);
-
-
 
 let xrSession = null;
 let xrReferenceSpace = null;
-
-
+let gl = null;
 
 vrModeButton.addEventListener("click", async function () {
-  if (!xrSession) {
-    try {
-      let gl = stage.domElement().getContext("webgl", { xrCompatible: true }); // ✅ FIXED WebGL Context
-      xrSession = await navigator.xr.requestSession("immersive-vr");
+    if (!xrSession) {
+      try {
+    
+        console.log("VR ON!");
 
-      let xrLayer = new XRWebGLLayer(xrSession, gl);
-      xrSession.updateRenderState({ baseLayer: xrLayer });
+        gl = window.marzipanoStage.domElement().getContext("webgl", {xrCompatible:true});
 
-      xrReferenceSpace = await xrSession.requestReferenceSpace("local");
+        xrSession = await navigator.xr.requestSession("immersive-vr", {
+          requiredFeatures: ["local-floor"]
+        });
 
-      xrSession.requestAnimationFrame(renderVr);
-    } catch (error) {
-      console.error("Failed to start WebXR session", error);
+                // Create the XRWebGLLayer
+        let xrLayer = new XRWebGLLayer(xrSession, gl);
+            
+        // Update the session's render state
+        xrSession.updateRenderState({ baseLayer: xrLayer });
+
+        xrReferenceSpace = await xrSession.requestReferenceSpace("local-floor");
+     
+       
+        window.inVrMode = true;
+        
+
+        xrSession.requestAnimationFrame(renderVr);
+      } catch (error) {
+        console.error("Failed to start WebXR session", error);
+      }
     }
-  }
-});
+  });
+
+
+
 function renderVr(time, frame) {
-  let session = frame.session;
-  let pose = frame.getViewerPose(xrReferenceSpace);
+    console.log("Render vr");
 
-  if (pose) {
-    let xrView = pose.views[0]; // Get the first eye (centered VR pose)
-    let transformMatrix = xrView.transform.matrix;
+    let session = frame.session;
+    let pose = frame.getViewerPose(xrReferenceSpace);
+    let glLayer = session.renderState.baseLayer;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, glLayer.framebuffer);
+    
+    if (pose) {
+      let xrView = pose.views[0]; // Get the first eye (centered VR pose)
+      let transformMatrix = xrView.transform.matrix;
 
-    // Extract yaw, pitch, and roll from the WebXR matrix
-    let yaw = Math.atan2(transformMatrix[8], transformMatrix[10]); // Y-axis rotation
-    let pitch = Math.asin(-transformMatrix[9]); // X-axis rotation
-    let roll = Math.atan2(transformMatrix[1], transformMatrix[5]); // Z-axis rotation
+      let yaw = Math.atan2(transformMatrix[8], transformMatrix[10]); // Y-axis rotation
+      let pitch = Math.asin(-transformMatrix[9]); // X-axis rotation
+      let roll = Math.atan2(transformMatrix[1], transformMatrix[5]); // Z-axis rotation
+  
+     window.marzipanoScene.view.setYaw(yaw);
+     window.marzipanoScene.view.setPitch(pitch);
+     window.marzipanoScene.view.setRoll(roll);
 
-    // Update Marzipano view
-    view.setYaw(yaw);
-    view.setPitch(pitch);
-    view.setRoll(roll);
+
+  
+
+    
+ 
+     
+    }
+    window.marzipanoStage.render();
+    xrSession.requestAnimationFrame(renderVr);
   }
-
-  stage.render();
-  session.requestAnimationFrame(renderVr);
-}
-
-function createLayer(stage, view, geometry) {
-  var urlPrefix = "//www.marzipano.net/media/music-room";
-  var source = new Marzipano.ImageUrlSource.fromString(
-    urlPrefix + "/left/{z}/{f}/{y}/{x}.jpg",
-    { cubeMapPreviewUrl: urlPrefix + "/left/preview.jpg" }
-  );
-
-  var textureStore = new Marzipano.TextureStore(source, stage);
-  var layer = new Marzipano.Layer(source, geometry, view, textureStore);
-
-  layer.pinFirstLevel();
-  return layer;
-}

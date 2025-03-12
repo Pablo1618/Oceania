@@ -207,9 +207,3 @@ function hideDescription(){
     }, 600);
 }
 
-
-function enterVRMode()
-{
-    console.log("Vr mode on");
-    
-}
