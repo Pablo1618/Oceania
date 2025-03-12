@@ -94,9 +94,9 @@ function renderVr(time, frame) {
       let xrView = pose.views[0]; // Get the first eye (centered VR pose)
       let transformMatrix = xrView.transform.matrix;
 
-      let yaw = Math.atan2(transformMatrix[8], transformMatrix[10]); // Y-axis rotation
-      let pitch = Math.asin(-transformMatrix[9]); // X-axis rotation
-      let roll = Math.atan2(transformMatrix[1], transformMatrix[5]); // Z-axis rotation
+      let yaw = -Math.atan2(transformMatrix[8], transformMatrix[10]); // Y-axis rotation
+      let pitch = -Math.asin(-transformMatrix[9]); // X-axis rotation
+      let roll = -Math.atan2(transformMatrix[1], transformMatrix[5]); // Z-axis rotation
   
      window.marzipanoScene.view.setYaw(yaw);
      window.marzipanoScene.view.setPitch(pitch);
