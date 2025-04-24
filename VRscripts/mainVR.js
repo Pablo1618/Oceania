@@ -49,37 +49,110 @@ let xrSession = null;
 let xrReferenceSpace = null;
 let gl = null;
 
-vrModeButton.addEventListener("click", async function () {
-    if (!xrSession) {
-      try {
-    
-        console.log("VR ON!");
+async function exitVrMode() {
+  if (xrSession) {
+    try {
+      // Zapisz aktualny stan sceny
+      const view = window.marzipanoScene.view;
+      const sceneName = document.querySelector('.sceneName').textContent; // Pobierz nazwę sceny
+      const currentState = {
+        yaw: view.yaw(),
+        pitch: view.pitch(),
+        roll: view.roll(),
+        sceneName: sceneName // Dodaj nazwę sceny
+      };
+      localStorage.setItem('sceneState', JSON.stringify(currentState));
+      console.log("Scene state saved:", currentState);
 
-        gl = window.marzipanoStage.domElement().getContext("webgl", {xrCompatible:true});
+      // Zakończ sesję XR
+      xrSession.updateRenderState({ baseLayer: null });
+      await xrSession.end();
+      history.pushState({ vr: false }, "Normal Mode");
 
-        xrSession = await navigator.xr.requestSession("immersive-vr", {
-          requiredFeatures: ["local-floor"]
-        });
+      window.inVrMode = false;
+      xrSession = null;
+      xrReferenceSpace = null;
+      gl = null;
 
-                // Create the XRWebGLLayer
-        let xrLayer = new XRWebGLLayer(xrSession, gl);
-            
-        // Update the session's render state
-        xrSession.updateRenderState({ baseLayer: xrLayer });
+      console.log("Exited VR mode");
 
-        xrReferenceSpace = await xrSession.requestReferenceSpace("local-floor");
-     
-       
-        window.inVrMode = true;
-        
+      // Przeładuj stronę
+      window.location.reload();
+    } catch (error) {
+      console.error("Failed to exit VR mode", error);
+    }
+  }
+}
 
-        xrSession.requestAnimationFrame(renderVr);
-      } catch (error) {
-        console.error("Failed to start WebXR session", error);
+document.addEventListener('DOMContentLoaded', function () {
+  const savedState = JSON.parse(localStorage.getItem('sceneState'));
+  if (savedState) {
+    const view = window.marzipanoScene.view;
+
+    // Przywróć yaw, pitch i roll
+    view.setYaw(savedState.yaw);
+    view.setPitch(savedState.pitch);
+    view.setRoll(savedState.roll);
+    console.log("Scene state restored:", savedState);
+
+    // Przywróć sceneName i ustaw odpowiednią scenę
+    if (savedState.sceneName) {
+      const sceneNameElement = document.querySelector('.sceneName');
+      if (sceneNameElement) {
+        sceneNameElement.textContent = savedState.sceneName; // Ustaw nazwę sceny w interfejsie
+      }
+
+      // Jeśli masz mechanizm zmiany sceny, wywołaj go tutaj
+      const scene = window.marzipanoScenes[savedState.sceneName];
+      if (scene) {
+        window.marzipanoScene.switchToScene(scene); // Przełącz na zapisaną scenę
+        console.log("Scene switched to:", savedState.sceneName);
       }
     }
-  });
 
+    // Wyczyść zapisany stan
+    localStorage.removeItem('sceneState');
+  }
+});
+
+// Obsługa przycisku "Back" na urządzeniach mobilnych
+window.addEventListener("popstate", () => {
+  if (window.inVrMode) {
+    exitVrMode();
+  }
+});
+
+// ...existing code...
+vrModeButton.addEventListener("click", async function () {
+  if (!xrSession) {
+    try {
+      console.log("VR ON!");
+
+      gl = window.marzipanoStage.domElement().getContext("webgl", { xrCompatible: true });
+
+      xrSession = await navigator.xr.requestSession("immersive-vr", {
+        requiredFeatures: ["local-floor"]
+      });
+
+      // Dodaj stan do historii przeglądarki
+      history.pushState({ vr: true }, "VR Mode");
+
+      // Create the XRWebGLLayer
+      let xrLayer = new XRWebGLLayer(xrSession, gl);
+
+      // Update the session's render state
+      xrSession.updateRenderState({ baseLayer: xrLayer });
+
+      xrReferenceSpace = await xrSession.requestReferenceSpace("local-floor");
+
+      window.inVrMode = true;
+
+      xrSession.requestAnimationFrame(renderVr);
+    } catch (error) {
+      console.error("Failed to start WebXR session", error);
+    }
+  }
+});
 
 
 function renderVr(time, frame) {
