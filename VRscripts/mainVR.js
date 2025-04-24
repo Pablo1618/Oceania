@@ -149,24 +149,6 @@ function renderVr(time, frame) {
     }
     gl = null;
     xrReferenceSpace = null;
-
-
-    //things that don't work
-    //  window.marzipanoViewer.controls().enable();
-    // window.marzipanoScene.scene._updateHotspotContainerHandler();
-    //document.querySelector('canvas').focus();
-    // adding controls back (they are already enabled and arent the problem)
-    // binding gl framebuffer to null
-    // switching back to this scene
-    // manually recreating hotspots
-
-  
-    /*
-      -- Nuclear Option --
-
-      Robelek
-    */
-
    
   
     if (window.location.hash === "#vr") {
