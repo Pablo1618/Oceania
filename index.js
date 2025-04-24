@@ -15,7 +15,34 @@
  */
 'use strict';
 
-(function() {
+function marzipanoInit(initData) {
+
+  let currentSceneId = "6-mostek";
+  if(initData?.currentSceneId !== undefined)
+  {
+    currentSceneId = initData.currentSceneId;
+  }
+
+  console.log("init");
+    //destroying marzipano viewer
+    try
+    {
+      window.marzipanoViewer.destroy();
+    }
+    catch(error)
+    {
+
+    }
+
+    window.marzipanoViewer = null;
+    window.marzipanoStage = null;
+    window.marzipanoScene = null;
+    var container = document.getElementById('pano');
+
+  // Remove all children from the container
+    container.replaceChildren();
+    console.log("Recreating marzipano viewer")
+  
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
   var screenfull = window.screenfull;
@@ -70,19 +97,9 @@
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
 
-  /*
-    This basically prevents the default controls from intervening when we are in VrMode
+  console.dir(viewer);
 
-    -- Robelek --
-  */
-  viewer._update = viewer.update;
-  viewer.update = function()
-  {
-    if(!window.inVrMode)
-    {
-      viewer._update();
-    }
-  }
+
 
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
@@ -221,8 +238,6 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
   */
   window.marzipanoStage = viewer.stage();
   window.marzipanoViewer = viewer;
-
-
 
   function sanitize(s) {
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
@@ -440,7 +455,22 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     return null;
   }
 
-  // Display the initial scene.
-  switchScene(scenes[6]);
 
-})();
+  //switchScene(scenes[6]);
+
+  const targetSceneData = scenes.find(s => s.data.id === currentSceneId);
+  switchScene(targetSceneData);
+
+
+  window.marzipanoScene.view.setRoll(0);
+
+  if(initData?.currentViewParams != undefined)
+  {
+    console.log('setting view params');
+    window.marzipanoScene.view.setPitch(initData.currentViewParams.pitch);
+    window.marzipanoScene.view.setYaw(initData.currentViewParams.yaw);
+  }
+
+};
+window.marzipanoInit = marzipanoInit;
+marzipanoInit();

@@ -48,12 +48,25 @@ window.addEventListener("resize", updateSize);
 let xrSession = null;
 let xrReferenceSpace = null;
 let gl = null;
+let originalPanoChildren = null;
+let container = null;
+
+let currentSceneId = null;
+let currentViewParams = null;
 
 vrModeButton.addEventListener("click", async function () {
+  container = document.getElementById('pano');
+  originalPanoChildren = container.innerHTML;
+
+  currentSceneId = window.marzipanoScene.data.id;
+  currentViewParams = window.marzipanoScene.view.parameters();
+
     if (!xrSession) {
       try {
-    
+ 
+
         console.log("VR ON!");
+
 
         gl = window.marzipanoStage.domElement().getContext("webgl", {xrCompatible:true});
 
@@ -71,11 +84,18 @@ vrModeButton.addEventListener("click", async function () {
      
        
         window.inVrMode = true;
+
+        history.pushState({inVr:true}, "W trybie VR", "#vr");
+
+        xrSession.addEventListener("end", onVrSessionEnded);
         
 
         xrSession.requestAnimationFrame(renderVr);
       } catch (error) {
         console.error("Failed to start WebXR session", error);
+        window.inVrMode = false;
+        xrSession = null;
+        gl = null;
       }
     }
   });
@@ -112,3 +132,97 @@ function renderVr(time, frame) {
     window.marzipanoStage.render();
     xrSession.requestAnimationFrame(renderVr);
   }
+
+
+  function onVrSessionEnded()
+  {
+  
+    console.log("VR session ended");
+    window.inVrMode = false;
+
+    if(xrSession)
+    {
+      xrSession.end();
+      xrSession.removeEventListener('end', onVrSessionEnded);
+     
+      xrSession = null;
+    }
+    gl = null;
+    xrReferenceSpace = null;
+
+
+    //things that don't work
+    //  window.marzipanoViewer.controls().enable();
+    // window.marzipanoScene.scene._updateHotspotContainerHandler();
+    //document.querySelector('canvas').focus();
+    // adding controls back (they are already enabled and arent the problem)
+    // binding gl framebuffer to null
+    // switching back to this scene
+    // manually recreating hotspots
+
+  
+    /*
+      -- Nuclear Option --
+
+      Robelek
+    */
+
+   
+  
+    if (window.location.hash === "#vr") {
+     
+     history.replaceState(null, document.title, window.location.pathname + window.location.search);
+ 
+    }
+   
+
+  }
+
+  window.addEventListener("popstate", (event) => 
+  {
+    event.preventDefault();
+    if(window.inVrMode)
+    {
+      console.log("Go back button pressed");
+
+      if(xrSession)
+      {
+        try
+        {
+          
+          
+
+          console.log("Id sceny ", currentSceneId);
+          console.table(currentViewParams)
+          xrSession.end();
+          console.log("xr session end succes")
+          
+          console.log(container);
+          document.querySelector('canvas[style*="z-index: 9999"]')?.remove();
+          container.querySelector("canvas")?.remove()
+
+          window.marzipanoInit(
+            {
+              currentSceneId:currentSceneId,
+              currentViewParams:currentViewParams
+
+            }
+          )
+           window.marzipanoScene.view.setRoll(0);
+
+        }
+        catch(error)
+        {
+          
+          console.error("Error when ending xrSession:", error);
+          onVrSessionEnded();
+          
+        }
+      }
+      else
+      {
+        onVrSessionEnded();
+      }
+    }
+  })
+
