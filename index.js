@@ -243,7 +243,21 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }
 
+    //Pablo - zatrzymywanie embeded videos po przelaczeniu sceny
+    function stopAllVideos() {
+
+      var iframes = document.querySelectorAll('iframe');
+      iframes.forEach(function (iframe) {
+        if (iframe.src.includes("youtube.com")) {
+          var src = iframe.src;
+          iframe.src = "";
+          iframe.src = src;
+        }
+      });
+    }
   function switchScene(scene) {
+
+    stopAllVideos();
 
     stopAutorotate();
     scene.view.setParameters(scene.data.initialViewParameters);
@@ -354,21 +368,25 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
   }
 
   function createInfoHotspotElement(hotspot) {
-
     // Create wrapper element to hold icon and tooltip.
     var wrapper = document.createElement('div');
-    wrapper.classList.add('hotspot');
-    wrapper.classList.add('info-hotspot');
+    wrapper.classList.add('hotspot', 'info-hotspot');
 
     // Create hotspot/tooltip header.
     var header = document.createElement('div');
     header.classList.add('info-hotspot-header');
 
-    // Create image element.
+    // Create image element (info icon).
     var iconWrapper = document.createElement('div');
     iconWrapper.classList.add('info-hotspot-icon-wrapper');
     var icon = document.createElement('img');
-    icon.src = 'img/info.png';
+    //icon.src = 'img/info.png';
+    // If it's a video, make the icon larger
+    if (hotspot.title === "Obejrzyj wideo") {
+      icon.src = 'img/video.png';
+    } else {
+      icon.src = 'img/info.png';
+    }
     icon.classList.add('info-hotspot-icon');
     iconWrapper.appendChild(icon);
 
@@ -393,34 +411,84 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     header.appendChild(titleWrapper);
     header.appendChild(closeWrapper);
 
-    // Create text element.
-    var text = document.createElement('div');
-    text.classList.add('info-hotspot-text');
-    text.innerHTML = hotspot.text;
+    // Create content container.
+    var content = document.createElement('div');
+    content.classList.add('info-hotspot-text');
 
-    // Place header and text into wrapper element.
-    wrapper.appendChild(header);
-    wrapper.appendChild(text);
+    if (hotspot.title === "VIDEO_HOTSPOT") {
+      content.innerHTML = "Kliknij, aby wyświetlić wideo"; // Domyślnie tekst
+    } else {
+      content.innerHTML = hotspot.text; // Standardowy tekst dla innych hotspotów
+    }
 
-    // Create a modal for the hotspot content to appear on mobile mode.
+    // Create a modal for mobile mode.
     var modal = document.createElement('div');
     modal.innerHTML = wrapper.innerHTML;
     modal.classList.add('info-hotspot-modal');
     document.body.appendChild(modal);
 
-    var toggle = function() {
+    var toggle = function () {
       wrapper.classList.toggle('visible');
       modal.classList.toggle('visible');
+
+      // Pablo - embeded video
+      if (hotspot.title === "Obejrzyj wideo") {
+        content.innerHTML = "";
+        if (!content.querySelector('iframe')) {
+          var iframe = document.createElement('iframe');
+          iframe.style.maxWidth = "none";
+          iframe.style.height = "300px";
+          iframe.style.width = "100%"
+          iframe.style.display = "block";
+          iframe.style.margin = "0 auto";
+
+          iframe.title = "YouTube video player";
+          iframe.frameBorder = "0";
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+          iframe.allowFullscreen = true;
+
+          if (hotspot.text === "VIDEO_RUFA") {
+            iframe.src = "https://www.youtube.com/embed/UhAZqH3Cq9g";
+          } else if (hotspot.text === "VIDEO_DZIOB") {
+            iframe.src = "https://www.youtube.com/embed/PpOUE1gi9Ds";
+          }
+
+          content.innerHTML = "";
+          content.appendChild(iframe);
+        }
+
+        content.style.width = "528px";
+        content.style.height = "300px";
+        content.style.maxHeight = "none";
+        content.style.padding = "5px";
+        content.style.display = "flex";
+        content.style.justifyContent = "center";
+        content.style.alignItems = "center";
+        content.style.flexDirection = "column";
+        content.style.marginLeft = "-125px";
+      } else {
+        content.style.width = "";
+        content.style.height = "";
+        content.style.padding = "";
+        content.style.display = "";
+        content.style.justifyContent = "";
+        content.style.alignItems = "";
+        content.style.flexDirection = "";
+      }
+
     };
 
     // Show content when hotspot is clicked.
-    wrapper.querySelector('.info-hotspot-header').addEventListener('click', toggle);
+    header.addEventListener('click', toggle);
 
     // Hide content when close icon is clicked.
-    modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', toggle);
+    closeWrapper.addEventListener('click', toggle);
+
+    // Place header and text into wrapper element.
+    wrapper.appendChild(header);
+    wrapper.appendChild(content);
 
     // Prevent touch and scroll events from reaching the parent element.
-    // This prevents the view control logic from interfering with the hotspot.
     stopTouchAndScrollEventPropagation(wrapper);
 
     return wrapper;
