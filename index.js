@@ -482,7 +482,7 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     header.addEventListener('click', toggle);
 
     // Hide content when close icon is clicked.
-    closeWrapper.addEventListener('click', toggle);
+    //closeWrapper.addEventListener('click', toggle);
 
     // Place header and text into wrapper element.
     wrapper.appendChild(header);
