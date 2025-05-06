@@ -141,7 +141,13 @@ var APP_DATA = {
           "pitch": -0.4464821827341918,
           "title": "Bom foka<br>",
           "text": "Określenie z żeglarstwa, odnoszące się do poziomego drzewca (bom) używanego do kontroli żagla przedniego - foka."
-        }
+        },
+        {
+          "yaw": -0.659075926023314,
+          "pitch": -0.25734802938951375,
+          "title": "Obejrzyj wideo",
+          "text": "VIDEO_DZIOB"
+        },
       ]
     },
     {
@@ -827,8 +833,8 @@ var APP_DATA = {
           "text": "Bloki oraz miejsce wykorzystywane do montowania odniesień do pomiarów optycznych."
         },
         {
-          "yaw": 0.3627063493060838,
-          "pitch": -0.18024829930521236,
+          "yaw": -0.1227063493060838,
+          "pitch": 0.18024829930521236,
           "title": "Bramownica rufowa<br>",
           "text": "Umożliwia podczepienie urządzeń i osprzętu do badań - jej maksymalne obciążenie robocze 2,5 tony<br>"
         },
@@ -837,6 +843,12 @@ var APP_DATA = {
           "pitch": -0.26080883285798784,
           "title": "Szpardek<br>",
           "text": "Tak nazywana jest powierzchnia pokładu statku znajdująca się na nadbudówce lub pomoście wystających ponad pokład główny jednostki.<br>"
+        },
+        {
+          "yaw": 0.7527063493060838,
+          "pitch": -0.25024829930521236,
+          "title": "Obejrzyj wideo",
+          "text": "VIDEO_RUFA"
         }
       ]
     },

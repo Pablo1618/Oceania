@@ -1,240 +1,239 @@
 body {
-    margin: 0;
-    height: 100vh;
-    background-color: transparent;
-    background-image: url('ui-img/background.png');
-    background-size: cover;
-    background-position: left center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    color: white;
-    font-family: "Outfit", sans-serif;
-    overflow:hidden;
+  margin: 0;
+  height: 100vh;
+  background-color: transparent;
+  background-image: url('ui-img/background.png');
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  font-family: "Outfit", sans-serif;
+  overflow:hidden;
 }
 
 .container {
-    text-align: center;
-    z-index: 1;
+  text-align: center;
+  z-index: 1;
 }
 
 .logo {
-    max-width: 100%;
-    height: 3.5vw;
-    margin-top: 1vw;
+  max-width: 100%;
+  height: 3.5vw;
+  margin-top: 1vw;
 }
 
 .outfit-title {
-    font-family: "Outfit", sans-serif;
-    font-size: 1.9vw;
-    color: white;
-    text-transform: uppercase;
-    margin-top: 4.5vw;
-    margin-bottom: 1vw;
-    font-weight: 600;
-    text-shadow: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5);
+  font-family: "Outfit", sans-serif;
+  font-size: 1.9vw;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 4.5vw;
+  margin-bottom: 1vw;
+  font-weight: 600;
+  text-shadow: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5);
 }
 
 .description {
-    font-family: "Outfit", sans-serif;
-    color: white;
-    font-size: 1.4vw;
-    max-width: 30vw;
-    margin: 0 auto;
-    padding: 0 5vw;
-    font-weight: 200;
-    text-shadow: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5);
+  font-family: "Outfit", sans-serif;
+  color: white;
+  font-size: 1.4vw;
+  max-width: 30vw;
+  margin: 0 auto;
+  padding: 0 5vw;
+  font-weight: 200;
+  text-shadow: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5);
 }
 
 .description_below {
-    font-family: "Outfit", sans-serif;
-    color: white;
-    font-size: 0.9vw;
-    max-width: 17vw;
-    margin: 0 auto;
-    margin-top: 1vw;
-    padding: 0 5vw;
-    font-weight: 200;
-    font-style: italic;
-    text-shadow: 0.08em 0.08em 0.12em rgba(0, 0, 0, 0.5);
+  font-family: "Outfit", sans-serif;
+  color: white;
+  font-size: 0.9vw;
+  max-width: 17vw;
+  margin: 0 auto;
+  margin-top: 1vw;
+  padding: 0 5vw;
+  font-weight: 200;
+  font-style: italic;
+  text-shadow: 0.08em 0.08em 0.12em rgba(0, 0, 0, 0.5);
 }
 
 .material-icons.md-1 {
-    font-size: 1.4vw;
-    color: rgb(0, 67, 143);
-    vertical-align: middle;
-    margin-right: 0.2vw;
+  font-size: 1.4vw;
+  color: rgb(0, 67, 143);
+  vertical-align: middle;
+  margin-right: 0.2vw;
 }
 
 .learn-more-button {
-    font-family: "Outfit", sans-serif;
-    background-color: rgba(255, 255, 255, 0.25);
-    border: none;
-    color: rgba(0, 67, 143, 0.8);
-    padding: 0.6vw 1.8vw;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 0.8vw;
-    margin-top: 1vw;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+  font-family: "Outfit", sans-serif;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: none;
+  color: rgba(0, 67, 143, 0.8);
+  padding: 0.6vw 1.8vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8vw;
+  margin-top: 1vw;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 .learn-more-button:hover {
-    background-color:rgba(5, 81, 180, 0.5);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  background-color:rgba(5, 81, 180, 0.5);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .notification {
-    font-family: "Outfit", sans-serif;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  font-family: "Outfit", sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .notification-content {
-    font-size:0.9vw;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 2vw;
-    border-radius: 0.8vw;
-    text-align: center;
-    position: relative;
+  font-size:0.9vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 2vw;
+  border-radius: 0.8vw;
+  text-align: center;
+  position: relative;
 }
 
 .enable-sound-button{
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 1vw;
-  margin: 0.5vw;
+background-color: rgba(255, 255, 255, 0.9);
+padding: 1vw;
+margin: 0.5vw;
 }
 #with-sound:hover{
-  background-color:rgba(84, 180, 5, 0.5);
+background-color:rgba(84, 180, 5, 0.5);
 }
 #without-sound:hover{
-  background-color:rgba(180, 5, 5, 0.5);
+background-color:rgba(180, 5, 5, 0.5);
 }
 
 .close-button {
-    background: transparent;
-    color: white;
-    font-size: 1.3vw;
-    border: none;
-    position: absolute;
-    top: 0.2vw;
-    right: 0.2vw;
-    cursor: pointer;
+  background: transparent;
+  color: white;
+  font-size: 1.3vw;
+  border: none;
+  position: absolute;
+  top: 0.2vw;
+  right: 0.2vw;
+  cursor: pointer;
 }
 
 
 
-  
+
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
 
 body {
-  font-family: Lato, sans-serif;
+font-family: Lato, sans-serif;
 }
 
 footer {
-  width:100vw;
-  position:fixed;
-  bottom:-18%;
+width:100vw;
+position:fixed;
+bottom:-18%;
 }
 footer div {
-  background-color:#16439c;
-  margin: -5px 0px 0px 0px;
-  padding:0px;
-  color: #fff;
-  text-align:center;
+background-color:#16439c;
+margin: -5px 0px 0px 0px;
+padding:0px;
+color: #fff;
+text-align:center;
 }
 svg {
-  width:100%;
+width:100%;
 }
 .arrow {
-  stroke-width: .3px;
-  stroke:yellow;
+stroke-width: .3px;
+stroke:yellow;
 }
 .topball {
-  animation: ball 1.5s ease-in-out;
-  animation-iteration-count:infinite;
-  animation-direction: alternate;
-  animation-delay: 0.3s;
-  cursor:pointer;
+animation: ball 1.5s ease-in-out;
+animation-iteration-count:infinite;
+animation-direction: alternate;
+animation-delay: 0.3s;
+cursor:pointer;
 }
 
 .wave {
-  animation: wave 3s linear;
-  animation-iteration-count:infinite;
-  fill: rgba(9, 46, 114, 0.4)
+animation: wave 3s linear;
+animation-iteration-count:infinite;
+fill: rgba(9, 46, 114, 0.4)
 }
 .drop {
-  fill: transparent;
-  animation: drop 5s ease infinite normal;
-  stroke: #163c8a;
-  stroke-width:0.9;
-  opacity:.4; 
-  transform: translateY(80%);
+fill: transparent;
+animation: drop 5s ease infinite normal;
+stroke: #163c8a;
+stroke-width:0.9;
+opacity:.4; 
+transform: translateY(80%);
 }
 .drop1 {
-  transform-origin: 20px 3px;
+transform-origin: 20px 3px;
 }
 .drop2 {
-  animation-delay: 3s;
-  animation-duration:3s;
-  transform-origin: 25px 3px;
+animation-delay: 3s;
+animation-duration:3s;
+transform-origin: 25px 3px;
 }
 .drop3 {
-  animation-delay: -2s;
-  animation-duration:3.4s;
-  transform-origin: 16px 3px;
+animation-delay: -2s;
+animation-duration:3.4s;
+transform-origin: 16px 3px;
 }
 .gooeff {
-  	filter: url(#goo);
+  filter: url(#goo);
 }
 #wave2 {
-  animation-duration:5s;
-  animation-direction: reverse;
-  opacity: .6
+animation-duration:5s;
+animation-direction: reverse;
+opacity: .6
 }
 #wave3 {
-  animation-duration: 7s;
-  opacity:.3;
+animation-duration: 7s;
+opacity:.3;
 }
 @keyframes drop {
-  0% {
-    transform: translateY(80%); 
-    opacity:.6; 
-  }
-  80% {
-    transform: translateY(80%); 
-    opacity:.6; 
-  }
-  90% { 
-    transform: translateY(10%) ; 
-    opacity:.6; 
-  }
-  100% { 
-    transform: translateY(0%) scale(1.5);  
-    stroke-width:0.2;
-    opacity:0; 
-  }
+0% {
+  transform: translateY(80%); 
+  opacity:.6; 
+}
+80% {
+  transform: translateY(80%); 
+  opacity:.6; 
+}
+90% { 
+  transform: translateY(10%) ; 
+  opacity:.6; 
+}
+100% { 
+  transform: translateY(0%) scale(1.5);  
+  stroke-width:0.2;
+  opacity:0; 
+}
 }
 @keyframes wave {
-  to {transform: translateX(-100%);}
+to {transform: translateX(-100%);}
 }
 @keyframes ball {
-  to {transform: translateY(20%);}
+to {transform: translateY(20%);}
 }
-

@@ -15,7 +15,34 @@
  */
 'use strict';
 
-(function() {
+function marzipanoInit(initData) {
+
+  let currentSceneId = "6-mostek";
+  if(initData?.currentSceneId !== undefined)
+  {
+    currentSceneId = initData.currentSceneId;
+  }
+
+  console.log("init");
+    //destroying marzipano viewer
+    try
+    {
+      window.marzipanoViewer.destroy();
+    }
+    catch(error)
+    {
+
+    }
+
+    window.marzipanoViewer = null;
+    window.marzipanoStage = null;
+    window.marzipanoScene = null;
+    var container = document.getElementById('pano');
+
+  // Remove all children from the container
+    container.replaceChildren();
+    console.log("Recreating marzipano viewer")
+  
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
   var screenfull = window.screenfull;
@@ -70,6 +97,10 @@
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
 
+  console.dir(viewer);
+
+
+
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
     var urlPrefix = "tiles";
@@ -83,8 +114,20 @@
 
     var pitchLimiter = Marzipano.RectilinearView.limit.pitch(0.004, 0.4); // Ograniczenie pitch do +-30°
     var fovLimiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180); // Ograniczenie FOV
+    
+  
+
     var limiter = function(fov, pitch, yaw) {
-        return pitchLimiter(fov, pitch, yaw) && fovLimiter(fov, pitch, yaw);
+        if(window.inVrMode)
+        {
+          return fovLimiter(fov, pitch, yaw);
+        }
+        else
+        {
+          return pitchLimiter(fov, pitch, yaw) && fovLimiter(fov, pitch, yaw);
+        }
+
+        
     };
 
 var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
@@ -187,11 +230,34 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
   controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
   controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
 
+
+  /*
+    The stuff below adds some globals, so we can use them in mainVR.js 
+
+    -- Robelek --
+  */
+  window.marzipanoStage = viewer.stage();
+  window.marzipanoViewer = viewer;
+
   function sanitize(s) {
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }
 
+    //Pablo - zatrzymywanie embeded videos po przelaczeniu sceny
+    function stopAllVideos() {
+
+      var iframes = document.querySelectorAll('iframe');
+      iframes.forEach(function (iframe) {
+        if (iframe.src.includes("youtube.com")) {
+          var src = iframe.src;
+          iframe.src = "";
+          iframe.src = src;
+        }
+      });
+    }
   function switchScene(scene) {
+
+    stopAllVideos();
 
     stopAutorotate();
     scene.view.setParameters(scene.data.initialViewParameters);
@@ -199,6 +265,9 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
+
+    window.marzipanoScene = scene;
+    console.log("Scene switched (index.js)")
 
     if(isAutoLectorON){
       playAudio(); // Lektor
@@ -299,21 +368,25 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
   }
 
   function createInfoHotspotElement(hotspot) {
-
     // Create wrapper element to hold icon and tooltip.
     var wrapper = document.createElement('div');
-    wrapper.classList.add('hotspot');
-    wrapper.classList.add('info-hotspot');
+    wrapper.classList.add('hotspot', 'info-hotspot');
 
     // Create hotspot/tooltip header.
     var header = document.createElement('div');
     header.classList.add('info-hotspot-header');
 
-    // Create image element.
+    // Create image element (info icon).
     var iconWrapper = document.createElement('div');
     iconWrapper.classList.add('info-hotspot-icon-wrapper');
     var icon = document.createElement('img');
-    icon.src = 'img/info.png';
+    //icon.src = 'img/info.png';
+    // If it's a video, make the icon larger
+    if (hotspot.title === "Obejrzyj wideo") {
+      icon.src = 'img/video.png';
+    } else {
+      icon.src = 'img/info.png';
+    }
     icon.classList.add('info-hotspot-icon');
     iconWrapper.appendChild(icon);
 
@@ -338,34 +411,84 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     header.appendChild(titleWrapper);
     header.appendChild(closeWrapper);
 
-    // Create text element.
-    var text = document.createElement('div');
-    text.classList.add('info-hotspot-text');
-    text.innerHTML = hotspot.text;
+    // Create content container.
+    var content = document.createElement('div');
+    content.classList.add('info-hotspot-text');
 
-    // Place header and text into wrapper element.
-    wrapper.appendChild(header);
-    wrapper.appendChild(text);
+    if (hotspot.title === "VIDEO_HOTSPOT") {
+      content.innerHTML = "Kliknij, aby wyświetlić wideo"; // Domyślnie tekst
+    } else {
+      content.innerHTML = hotspot.text; // Standardowy tekst dla innych hotspotów
+    }
 
-    // Create a modal for the hotspot content to appear on mobile mode.
+    // Create a modal for mobile mode.
     var modal = document.createElement('div');
     modal.innerHTML = wrapper.innerHTML;
     modal.classList.add('info-hotspot-modal');
     document.body.appendChild(modal);
 
-    var toggle = function() {
+    var toggle = function () {
       wrapper.classList.toggle('visible');
       modal.classList.toggle('visible');
+
+      // Pablo - embeded video
+      if (hotspot.title === "Obejrzyj wideo") {
+        content.innerHTML = "";
+        if (!content.querySelector('iframe')) {
+          var iframe = document.createElement('iframe');
+          iframe.style.maxWidth = "none";
+          iframe.style.height = "300px";
+          iframe.style.width = "100%"
+          iframe.style.display = "block";
+          iframe.style.margin = "0 auto";
+
+          iframe.title = "YouTube video player";
+          iframe.frameBorder = "0";
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+          iframe.allowFullscreen = true;
+
+          if (hotspot.text === "VIDEO_RUFA") {
+            iframe.src = "https://www.youtube.com/embed/UhAZqH3Cq9g";
+          } else if (hotspot.text === "VIDEO_DZIOB") {
+            iframe.src = "https://www.youtube.com/embed/PpOUE1gi9Ds";
+          }
+
+          content.innerHTML = "";
+          content.appendChild(iframe);
+        }
+
+        content.style.width = "528px";
+        content.style.height = "300px";
+        content.style.maxHeight = "none";
+        content.style.padding = "5px";
+        content.style.display = "flex";
+        content.style.justifyContent = "center";
+        content.style.alignItems = "center";
+        content.style.flexDirection = "column";
+        content.style.marginLeft = "-125px";
+      } else {
+        content.style.width = "";
+        content.style.height = "";
+        content.style.padding = "";
+        content.style.display = "";
+        content.style.justifyContent = "";
+        content.style.alignItems = "";
+        content.style.flexDirection = "";
+      }
+
     };
 
     // Show content when hotspot is clicked.
-    wrapper.querySelector('.info-hotspot-header').addEventListener('click', toggle);
+    header.addEventListener('click', toggle);
 
     // Hide content when close icon is clicked.
-    modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', toggle);
+    closeWrapper.addEventListener('click', toggle);
+
+    // Place header and text into wrapper element.
+    wrapper.appendChild(header);
+    wrapper.appendChild(content);
 
     // Prevent touch and scroll events from reaching the parent element.
-    // This prevents the view control logic from interfering with the hotspot.
     stopTouchAndScrollEventPropagation(wrapper);
 
     return wrapper;
@@ -400,7 +523,22 @@ var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
     return null;
   }
 
-  // Display the initial scene.
-  switchScene(scenes[6]);
 
-})();
+  //switchScene(scenes[6]);
+
+  const targetSceneData = scenes.find(s => s.data.id === currentSceneId);
+  switchScene(targetSceneData);
+
+
+  window.marzipanoScene.view.setRoll(0);
+
+  if(initData?.currentViewParams != undefined)
+  {
+    console.log('setting view params');
+    window.marzipanoScene.view.setPitch(initData.currentViewParams.pitch);
+    window.marzipanoScene.view.setYaw(initData.currentViewParams.yaw);
+  }
+
+};
+window.marzipanoInit = marzipanoInit;
+marzipanoInit();

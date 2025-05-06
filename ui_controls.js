@@ -84,7 +84,7 @@ function updatePins()
     let idCounter = 0;
     for(pin of pinsHere)
     {
-        console.log(pin);
+        
         
         let position = {x: pin['position']['x'], y: pin['position']['y']};
         position['x'] = position['x'] / ORIGINAL_DECK_IMAGE_WIDTH * scaledImageSize.width;
@@ -114,7 +114,7 @@ function updatePins()
 
         pinContainer.appendChild(pinElement);
 
-        console.log(position);
+   
 
     }
 
@@ -206,3 +206,4 @@ function hideDescription(){
         document.getElementById('description-div').style.display = 'none';
     }, 600);
 }
+
