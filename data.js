@@ -130,6 +130,12 @@ var APP_DATA = {
           "title": "Nadbudówka dziobowa<br>",
           "text": "Zejście do mesy i kabin, pomieszczenia pomiarowego, pomieszczenia systemu wentylacji.<br>"
         },
+          {
+          "yaw": -2.086204611071858,
+          "pitch": -0.536874605824986233,
+          "title": "Balkon pomiarowy<br>",
+          "text": "Służy do prowadzenia ciągłych pomiarów parametrów atmosferycznych, ponieważ powietrze w tym miejscu nie jest zakłócane przez spaliny ani inne przeszkody (poza samym masztem).<br>"
+        },
         {
           "yaw": -2.2647210936174513,
           "pitch": -0.6925634607816988,
@@ -419,7 +425,7 @@ var APP_DATA = {
           "yaw": 2.3120443867678953,
           "pitch": -0.0058758232987177195,
           "title": "System gaśniczy NOVEC<br>",
-          "text": "Nowoczesne rozwiązanie przeciwpożarowe, stosowana w ochronie cennych urządzeń oraz pomieszczeń technicznych."
+          "text": "Nowoczesne rozwiązanie przeciwpożarowe, stosowane w ochronie cennych urządzeń oraz pomieszczeń technicznych."
         }
       ]
     },
@@ -494,7 +500,7 @@ var APP_DATA = {
           "yaw": -2.214008565474723,
           "pitch": -0.06007864122325657,
           "title": "Drzwi na korytarz<br>",
-          "text": "Łączy wszystkie pokoje<br>"
+          "text": "Łączy wszystkie kajuty<br>"
         }
       ]
     },
@@ -662,7 +668,7 @@ var APP_DATA = {
     },
     {
       "id": "8-pokj-zaogi",
-      "name": "Pokój Załogi",
+      "name": "Pokój Załogi (Kajuta)",
       "levels": [
         {
           "tileSize": 256,
@@ -737,7 +743,7 @@ var APP_DATA = {
           "yaw": 2.0980184313844713,
           "pitch": 0.3752328700658132,
           "title": "Telefon wewnętrzny<br>",
-          "text": "Umożliwia komunikację pomiędzy cżłonkami załogi statku - sieć wewnątrz-statkowa."
+          "text": "Umożliwia komunikację pomiędzy członkami załogi statku - sieć wewnątrz-statkowa."
         },
         {
           "yaw": -0.5829948699439775,
