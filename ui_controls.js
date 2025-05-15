@@ -194,6 +194,15 @@ function showDescription() {
         descriptionParagraph.innerHTML = 'Brak opisu dla tej sceny.';
     }
 }
+function showAutorsDescription() {
+    showDescription();
+
+    const descriptionTitle = document.getElementById('description-title')
+    const descriptionParagraph = document.getElementById('description-paragraph')
+    const sceneName = "Informacje o autorach";
+    descriptionTitle.innerHTML = sceneName;
+    descriptionParagraph.innerHTML = descriptions[sceneName];
+}
 
 function hideDescription(){
     const descriptionContent = document.getElementById('description-content-div');
