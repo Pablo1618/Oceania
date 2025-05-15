@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
 <style> @-ms-viewport { width: device-width; } </style>
-<link rel="stylesheet" href="vendor/reset.min.css?version=4">
-<link rel="stylesheet" href="style.css?version=4">
-<link rel="icon" href="/ui-img/logo.png" type="image/x-icon">
+<link rel="stylesheet" href="vendor/reset.min.css?version=5">
+<link rel="stylesheet" href="style.css?version=5">
+<link rel="icon" href="https://old.iopan.pl/images/PANsmall.gif" type="image/x-icon">
 
 <audio id="serwerownia-audio" src="sounds/serwerownia.mp3" preload="auto"></audio>
 <audio id="dziob-audio" src="sounds/dziob.mp3" preload="auto"></audio>
@@ -21,9 +21,9 @@
 <audio id="rufa-audio" src="sounds/rufa.mp3" preload="auto"></audio>
 <audio id="salon-rufa-audio" src="sounds/salon_rufa.mp3" preload="auto"></audio>
 
-<script src="./AudioControl.js?version=4"> </script>
-<script src="ui_controls.js?version=4" defer></script>
-<script src="VRscripts/mainVR.js?version=4" defer></script>
+<script src="./AudioControl.js?version=5"> </script>
+<script src="ui_controls.js?version=5" defer></script>
+<script src="VRscripts/mainVR.js?version=5" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=play_arrow" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -54,14 +54,14 @@
     </label>    
 
     <div class="btn-tooltip">
-      <button class="fa-solid fa-vr-cardboard" id="vr-mode-button"></button>
-      <span class="tooltip-text">Tryb Wirtualnej Rzeczywistości</span>
+      <button class="fa-regular fa-comment-dots" onclick="showDescription()"></button>
+      <span class="tooltip-text">Informacje o tym miejscu</span>
     </div>
 
     <div class="btn-tooltip">
-      <button class="fa-regular fa-comment-dots" onclick="showDescription()"></button>
-      <span class="tooltip-text">Informacje</span>
-  </div>
+      <button class="fa-solid fa-circle-info" onclick="showAutorsDescription()"></button>
+      <span class="tooltip-text">Informacje o autorach</span>
+    </div>
 
 </div>
 
@@ -328,8 +328,8 @@
 <script src="vendor/bowser.min.js" ></script>
 <script src="vendor/marzipano.js" ></script>
 
-<script src="data.js?version=4"></script>
-<script src="index.js?version=4"></script>
+<script src="data.js?version=5"></script>
+<script src="index.js?version=5"></script>
 
 </body>
 </html>
