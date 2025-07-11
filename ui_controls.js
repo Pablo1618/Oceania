@@ -42,7 +42,7 @@ TEMPLATE FOR JSON SCENE
 //loading the deck data and descriptions
 window.onload = function()
 {
-    fetch('descriptionsData.json')
+    fetch('descriptionsData.json?v=2')
     .then(response => response.json())
     .then(data => {
         descriptions = data;
